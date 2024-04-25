@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="doc2go">
+    <link href="../../../../../_/css/main.css" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../../../_/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../../../_/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../../../_/icons/favicon-16x16.png">
+    <link rel="shortcut icon" href="../../../../../_/icons/favicon.ico"><title>api</title>
+</head>
+  <body>
+    <nav>
+        <a href="../../../..">github.com</a>/<a href="../../..">dmdavis</a>/<a href="../..">ijr</a>/<a href="..">pkg</a>/api<span class="navbar-right">
+          <a href="../../../../..">Root</a> | <a href="#pkg-index">Index</a></span>
+      </nav>
+    <main><h2 id="pkg-overview">package api</h2>
+<pre class="chroma"><span class="kn">import</span> <span class="s">&#34;github.com/dmdavis/ijr/pkg/api&#34;</span></pre>
+<p>Package api houses the Go gRPC implementations of job and rootfs protobuf
+definitions.
+<h3 id="pkg-index">Index</h3>
+<ul>
+  <li>
+      <a href="#OutputSender">type OutputSender</a>
+      </li>
+  <li>
+      <a href="#PrintOutputSender">type PrintOutputSender</a>
+      <ul>
+          <li><a href="#PrintOutputSender.Send">func (s PrintOutputSender) Send(output string) error</a></li>
+          </ul>
+      </li>
+  </ul><h3 id="pkg-types">Types</h3>
+  <h3 id="OutputSender">type OutputSender</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">OutputSender</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span id="OutputSender.Send"><span class="nf">Send</span></span><span class="p">(</span><a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a><span class="p">)</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a>
+<span class="p">}</span></pre>
+    <p>OutputSender is an interface that provides a Send method for sending scanned
+text to receiver.
+<h3 id="PrintOutputSender">type PrintOutputSender</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">PrintOutputSender</span> <span class="kd">struct</span><span class="p">{}</span></pre>
+    <p>PrintOutputSender print command output to the console.
+<h4 id="PrintOutputSender.Send">func (PrintOutputSender) Send</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <a href="#PrintOutputSender"><span class="nx">PrintOutputSender</span></a><span class="p">)</span> <span class="nf">Send</span><span class="p">(</span><span class="nx">output</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a><span class="p">)</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a></pre>
+  <p>Send prints output text via fmt.Print.
+<h3 id="pkg-directories">Directories</h3>
+
+<table>
+  <tbody>
+    <tr>
+        <td><a href="job">job</a></td>
+        <td>Package job contains the Go gRPC implementation of the job.proto definitions.</td>
+      </tr>
+    <tr>
+        <td><a href="rootfs">rootfs</a></td>
+        <td>Package rootfs contains the Go gRPC implementation of the rootfs.proto definitions.</td>
+      </tr>
+    </tbody>
+</table>
+</main>
+    <hr>
+    <footer>
+      <small id="generated-by-footer">
+        Generated with <a href="https://abhinav.github.io/doc2go/">doc2go</a>
+      </small>
+    </footer>
+    <script src="../../../../../_/js/permalink.js"></script></body>
+</html>

@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package rootfs;
+
+option go_package = "/rootfs";
+
+// RootFileService provides methods for uploading tarballs with archived root
+// file systems for jobs to mount so that their execution is isolated from the
+// host file system.
+service RootFileService {
+  // Upload a tarball and extract it to a specified sub-folder of the server's
+  // rootfs storage location.
+  rpc Upload(UploadRequest) returns (UploadResponse) {}
+  // List all of the uploaded root file system folders.
+  rpc ListFolders(ListFoldersRequest) returns (ListFoldersResponse) {}
+  // Delete an uploaded root file system folder.
+  rpc DeleteFolder(DeleteFolderRequest) returns (DeleteFolderResponse) {}
+}
+
+// Request to upload a tarball.
+message UploadRequest {
+  // The name of the sub-folder to which files should be extracted.
+  string folder_name = 1;
+  // The tarball file's bytes.
+  bytes data = 2;
+}
+
+// Response for the upload request.
+message UploadResponse {
+  // Message indicating if the upload was successful or not.
+  string message = 1;
+}
+
+// Request to get a list of all the uploaded root file system sub-folders.
+message ListFoldersRequest {
+}
+
+// Response for the list root file system folders request.
+message ListFoldersResponse {
+  // The names of the uploaded sub-folders.
+  repeated string folder_names = 1;
+}
+
+// Request to delete a specific root file system sub-folder.
+message DeleteFolderRequest {
+  // The name of the root file system sub-folder to delete.
+  string folder_name = 1;
+}
+
+// Response for the delete root file system sub-folder request.
+message DeleteFolderResponse {
+  // Message indicating if the deletion was successful or not.
+  string message = 1;
+}

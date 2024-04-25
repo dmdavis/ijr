@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="doc2go">
+    <link href="../../../../../../_/css/main.css" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../../../../_/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../../../../_/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../../../../_/icons/favicon-16x16.png">
+    <link rel="shortcut icon" href="../../../../../../_/icons/favicon.ico"><title>job</title>
+</head>
+  <body>
+    <nav>
+        <a href="../../../../..">github.com</a>/<a href="../../../..">dmdavis</a>/<a href="../../..">ijr</a>/<a href="../..">pkg</a>/<a href="..">api</a>/job<span class="navbar-right">
+          <a href="../../../../../..">Root</a> | <a href="#pkg-index">Index</a></span>
+      </nav>
+    <main><h2 id="pkg-overview">package job</h2>
+<pre class="chroma"><span class="kn">import</span> <span class="s">&#34;github.com/dmdavis/ijr/pkg/api/job&#34;</span></pre>
+<p>Package job contains the Go gRPC implementation of the job.proto definitions.
+<h3 id="pkg-index">Index</h3>
+<ul>
+  <li><a href="#pkg-constants">Constants</a></li><li><a href="#pkg-variables">Variables</a></li><li><a href="#RegisterJobServiceServer">func RegisterJobServiceServer(s grpc.ServiceRegistrar, srv JobServiceServer)</a></li>
+  <li>
+      <a href="#JobIdentifier">type JobIdentifier</a>
+      <ul>
+          <li><a href="#JobIdentifier.Descriptor">func (*JobIdentifier) Descriptor() ([]byte, []int)</a> <span class="deprecated-tag">deprecated</span></li>
+          <li><a href="#JobIdentifier.GetJobId">func (x *JobIdentifier) GetJobId() string</a></li>
+          <li><a href="#JobIdentifier.ProtoMessage">func (*JobIdentifier) ProtoMessage()</a></li>
+          <li><a href="#JobIdentifier.ProtoReflect">func (x *JobIdentifier) ProtoReflect() protoreflect.Message</a></li>
+          <li><a href="#JobIdentifier.Reset">func (x *JobIdentifier) Reset()</a></li>
+          <li><a href="#JobIdentifier.String">func (x *JobIdentifier) String() string</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#JobInfo">type JobInfo</a>
+      <ul>
+          <li><a href="#JobInfo.Descriptor">func (*JobInfo) Descriptor() ([]byte, []int)</a> <span class="deprecated-tag">deprecated</span></li>
+          <li><a href="#JobInfo.GetCpuShares">func (x *JobInfo) GetCpuShares() uint32</a></li>
+          <li><a href="#JobInfo.GetDiskReadIopsLimit">func (x *JobInfo) GetDiskReadIopsLimit() string</a></li>
+          <li><a href="#JobInfo.GetDiskWriteIopsLimit">func (x *JobInfo) GetDiskWriteIopsLimit() string</a></li>
+          <li><a href="#JobInfo.GetJobCommand">func (x *JobInfo) GetJobCommand() string</a></li>
+          <li><a href="#JobInfo.GetJobId">func (x *JobInfo) GetJobId() string</a></li>
+          <li><a href="#JobInfo.GetJobStart">func (x *JobInfo) GetJobStart() *timestamppb.Timestamp</a></li>
+          <li><a href="#JobInfo.GetMemoryLimitInBytes">func (x *JobInfo) GetMemoryLimitInBytes() uint64</a></li>
+          <li><a href="#JobInfo.GetRootFS">func (x *JobInfo) GetRootFS() string</a></li>
+          <li><a href="#JobInfo.ProtoMessage">func (*JobInfo) ProtoMessage()</a></li>
+          <li><a href="#JobInfo.ProtoReflect">func (x *JobInfo) ProtoReflect() protoreflect.Message</a></li>
+          <li><a href="#JobInfo.Reset">func (x *JobInfo) Reset()</a></li>
+          <li><a href="#JobInfo.String">func (x *JobInfo) String() string</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#JobOutput">type JobOutput</a>
+      <ul>
+          <li><a href="#JobOutput.Descriptor">func (*JobOutput) Descriptor() ([]byte, []int)</a> <span class="deprecated-tag">deprecated</span></li>
+          <li><a href="#JobOutput.GetOutput">func (x *JobOutput) GetOutput() string</a></li>
+          <li><a href="#JobOutput.ProtoMessage">func (*JobOutput) ProtoMessage()</a></li>
+          <li><a href="#JobOutput.ProtoReflect">func (x *JobOutput) ProtoReflect() protoreflect.Message</a></li>
+          <li><a href="#JobOutput.Reset">func (x *JobOutput) Reset()</a></li>
+          <li><a href="#JobOutput.String">func (x *JobOutput) String() string</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#JobServiceClient">type JobServiceClient</a>
+      <ul>
+          <li><a href="#NewJobServiceClient">func NewJobServiceClient(cc grpc.ClientConnInterface) JobServiceClient</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#JobServiceServer">type JobServiceServer</a>
+      </li>
+  <li>
+      <a href="#JobService_StreamJobOutputClient">type JobService_StreamJobOutputClient</a>
+      </li>
+  <li>
+      <a href="#JobService_StreamJobOutputServer">type JobService_StreamJobOutputServer</a>
+      </li>
+  <li>
+      <a href="#ListJobsRequest">type ListJobsRequest</a>
+      <ul>
+          <li><a href="#ListJobsRequest.Descriptor">func (*ListJobsRequest) Descriptor() ([]byte, []int)</a> <span class="deprecated-tag">deprecated</span></li>
+          <li><a href="#ListJobsRequest.ProtoMessage">func (*ListJobsRequest) ProtoMessage()</a></li>
+          <li><a href="#ListJobsRequest.ProtoReflect">func (x *ListJobsRequest) ProtoReflect() protoreflect.Message</a></li>
+          <li><a href="#ListJobsRequest.Reset">func (x *ListJobsRequest) Reset()</a></li>
+          <li><a href="#ListJobsRequest.String">func (x *ListJobsRequest) String() string</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#ListJobsResponse">type ListJobsResponse</a>
+      <ul>
+          <li><a href="#ListJobsResponse.Descriptor">func (*ListJobsResponse) Descriptor() ([]byte, []int)</a> <span class="deprecated-tag">deprecated</span></li>
+          <li><a href="#ListJobsResponse.GetJobInfo">func (x *ListJobsResponse) GetJobInfo() []*JobInfo</a></li>
+          <li><a href="#ListJobsResponse.ProtoMessage">func (*ListJobsResponse) ProtoMessage()</a></li>
+          <li><a href="#ListJobsResponse.ProtoReflect">func (x *ListJobsResponse) ProtoReflect() protoreflect.Message</a></li>
+          <li><a href="#ListJobsResponse.Reset">func (x *ListJobsResponse) Reset()</a></li>
+          <li><a href="#ListJobsResponse.String">func (x *ListJobsResponse) String() string</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#StartRequest">type StartRequest</a>
+      <ul>
+          <li><a href="#StartRequest.Descriptor">func (*StartRequest) Descriptor() ([]byte, []int)</a> <span class="deprecated-tag">deprecated</span></li>
+          <li><a href="#StartRequest.GetCpuShares">func (x *StartRequest) GetCpuShares() uint32</a></li>
+          <li><a href="#StartRequest.GetDiskReadIopsLimit">func (x *StartRequest) GetDiskReadIopsLimit() string</a></li>
+          <li><a href="#StartRequest.GetDiskWriteIopsLimit">func (x *StartRequest) GetDiskWriteIopsLimit() string</a></li>
+          <li><a href="#StartRequest.GetJobCommand">func (x *StartRequest) GetJobCommand() string</a></li>
+          <li><a href="#StartRequest.GetMemoryLimitInBytes">func (x *StartRequest) GetMemoryLimitInBytes() uint64</a></li>
+          <li><a href="#StartRequest.GetRootFS">func (x *StartRequest) GetRootFS() string</a></li>
+          <li><a href="#StartRequest.ProtoMessage">func (*StartRequest) ProtoMessage()</a></li>
+          <li><a href="#StartRequest.ProtoReflect">func (x *StartRequest) ProtoReflect() protoreflect.Message</a></li>
+          <li><a href="#StartRequest.Reset">func (x *StartRequest) Reset()</a></li>
+          <li><a href="#StartRequest.String">func (x *StartRequest) String() string</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#StartResponse">type StartResponse</a>
+      <ul>
+          <li><a href="#StartResponse.Descriptor">func (*StartResponse) Descriptor() ([]byte, []int)</a> <span class="deprecated-tag">deprecated</span></li>
+          <li><a href="#StartResponse.GetJobId">func (x *StartResponse) GetJobId() string</a></li>
+          <li><a href="#StartResponse.GetJobStart">func (x *StartResponse) GetJobStart() *timestamppb.Timestamp</a></li>
+          <li><a href="#StartResponse.ProtoMessage">func (*StartResponse) ProtoMessage()</a></li>
+          <li><a href="#StartResponse.ProtoReflect">func (x *StartResponse) ProtoReflect() protoreflect.Message</a></li>
+          <li><a href="#StartResponse.Reset">func (x *StartResponse) Reset()</a></li>
+          <li><a href="#StartResponse.String">func (x *StartResponse) String() string</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#StopResponse">type StopResponse</a>
+      <ul>
+          <li><a href="#StopResponse.Descriptor">func (*StopResponse) Descriptor() ([]byte, []int)</a> <span class="deprecated-tag">deprecated</span></li>
+          <li><a href="#StopResponse.GetStatus">func (x *StopResponse) GetStatus() StopResponse_JobStatus</a></li>
+          <li><a href="#StopResponse.ProtoMessage">func (*StopResponse) ProtoMessage()</a></li>
+          <li><a href="#StopResponse.ProtoReflect">func (x *StopResponse) ProtoReflect() protoreflect.Message</a></li>
+          <li><a href="#StopResponse.Reset">func (x *StopResponse) Reset()</a></li>
+          <li><a href="#StopResponse.String">func (x *StopResponse) String() string</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#StopResponse_JobStatus">type StopResponse_JobStatus</a>
+      <ul>
+          <li><a href="#StopResponse_JobStatus.Descriptor">func (StopResponse_JobStatus) Descriptor() protoreflect.EnumDescriptor</a></li>
+          <li><a href="#StopResponse_JobStatus.Enum">func (x StopResponse_JobStatus) Enum() *StopResponse_JobStatus</a></li>
+          <li><a href="#StopResponse_JobStatus.EnumDescriptor">func (StopResponse_JobStatus) EnumDescriptor() ([]byte, []int)</a> <span class="deprecated-tag">deprecated</span></li>
+          <li><a href="#StopResponse_JobStatus.Number">func (x StopResponse_JobStatus) Number() protoreflect.EnumNumber</a></li>
+          <li><a href="#StopResponse_JobStatus.String">func (x StopResponse_JobStatus) String() string</a></li>
+          <li><a href="#StopResponse_JobStatus.Type">func (StopResponse_JobStatus) Type() protoreflect.EnumType</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#StreamServiceOutputSender">type StreamServiceOutputSender</a>
+      <ul>
+          <li><a href="#StreamServiceOutputSender.Send">func (j StreamServiceOutputSender) Send(output string) error</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#UnimplementedJobServiceServer">type UnimplementedJobServiceServer</a>
+      <ul>
+          <li><a href="#UnimplementedJobServiceServer.ListJobs">func (UnimplementedJobServiceServer) ListJobs(context.Context, *ListJobsRequest) (*ListJobsResponse, error)</a></li>
+          <li><a href="#UnimplementedJobServiceServer.StartJob">func (UnimplementedJobServiceServer) StartJob(context.Context, *StartRequest) (*StartResponse, error)</a></li>
+          <li><a href="#UnimplementedJobServiceServer.StopJob">func (UnimplementedJobServiceServer) StopJob(context.Context, *JobIdentifier) (*StopResponse, error)</a></li>
+          <li><a href="#UnimplementedJobServiceServer.StreamJobOutput">func (UnimplementedJobServiceServer) StreamJobOutput(*JobIdentifier, JobService_StreamJobOutputServer) error</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#UnsafeJobServiceServer">type UnsafeJobServiceServer</a>
+      </li>
+  </ul><h3 id="pkg-constants">Constants</h3>
+  <pre class="chroma"><span class="kd">const</span> <span class="p">(</span>
+	<span id="JobService_StartJob_FullMethodName"><span class="nx">JobService_StartJob_FullMethodName</span></span>        <span class="p">=</span> <span class="s">&#34;/job.JobService/StartJob&#34;</span>
+	<span id="JobService_ListJobs_FullMethodName"><span class="nx">JobService_ListJobs_FullMethodName</span></span>        <span class="p">=</span> <span class="s">&#34;/job.JobService/ListJobs&#34;</span>
+	<span id="JobService_StreamJobOutput_FullMethodName"><span class="nx">JobService_StreamJobOutput_FullMethodName</span></span> <span class="p">=</span> <span class="s">&#34;/job.JobService/StreamJobOutput&#34;</span>
+	<span id="JobService_StopJob_FullMethodName"><span class="nx">JobService_StopJob_FullMethodName</span></span>         <span class="p">=</span> <span class="s">&#34;/job.JobService/StopJob&#34;</span>
+<span class="p">)</span></pre>
+  <h3 id="pkg-variables">Variables</h3>
+  <pre class="chroma"><span class="kd">var</span> <span class="p">(</span>
+	<span id="StopResponse_JobStatus_name"><span class="nx">StopResponse_JobStatus_name</span></span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><a href="https://pkg.go.dev/builtin#int32"><span class="kt">int32</span></a><span class="p">]</span><a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a><span class="p">{</span>
+		<span class="mi">0</span><span class="p">:</span> <span class="s">&#34;UNKNOWN&#34;</span><span class="p">,</span>
+		<span class="mi">1</span><span class="p">:</span> <span class="s">&#34;STOPPED&#34;</span><span class="p">,</span>
+	<span class="p">}</span>
+	<span id="StopResponse_JobStatus_value"><span class="nx">StopResponse_JobStatus_value</span></span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a><span class="p">]</span><a href="https://pkg.go.dev/builtin#int32"><span class="kt">int32</span></a><span class="p">{</span>
+		<span class="s">&#34;UNKNOWN&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+		<span class="s">&#34;STOPPED&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+	<span class="p">}</span>
+<span class="p">)</span></pre>
+  <p>Enum value maps for StopResponse_JobStatus.
+<pre class="chroma"><span class="kd">var</span> <span id="File_job_proto"><span class="nx">File_job_proto</span></span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#FileDescriptor"><span class="nx">FileDescriptor</span></a></pre>
+  <pre class="chroma"><span class="kd">var</span> <span id="JobService_ServiceDesc"><span class="nx">JobService_ServiceDesc</span></span> <span class="p">=</span> <a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#ServiceDesc"><span class="nx">ServiceDesc</span></a><span class="p">{</span>
+	<span class="nx">ServiceName</span><span class="p">:</span> <span class="s">&#34;job.JobService&#34;</span><span class="p">,</span>
+	<span class="nx">HandlerType</span><span class="p">:</span> <span class="p">(</span><span class="o">*</span><a href="#JobServiceServer"><span class="nx">JobServiceServer</span></a><span class="p">)(</span><a href="https://pkg.go.dev/builtin#nil"><span class="kc">nil</span></a><span class="p">),</span>
+	<span class="nx">Methods</span><span class="p">:</span> <span class="p">[]</span><a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#MethodDesc"><span class="nx">MethodDesc</span></a><span class="p">{</span>
+		<span class="p">{</span>
+			<span class="nx">MethodName</span><span class="p">:</span> <span class="s">&#34;StartJob&#34;</span><span class="p">,</span>
+			<span class="nx">Handler</span><span class="p">:</span>    <span class="nx">_JobService_StartJob_Handler</span><span class="p">,</span>
+		<span class="p">},</span>
+		<span class="p">{</span>
+			<span class="nx">MethodName</span><span class="p">:</span> <span class="s">&#34;ListJobs&#34;</span><span class="p">,</span>
+			<span class="nx">Handler</span><span class="p">:</span>    <span class="nx">_JobService_ListJobs_Handler</span><span class="p">,</span>
+		<span class="p">},</span>
+		<span class="p">{</span>
+			<span class="nx">MethodName</span><span class="p">:</span> <span class="s">&#34;StopJob&#34;</span><span class="p">,</span>
+			<span class="nx">Handler</span><span class="p">:</span>    <span class="nx">_JobService_StopJob_Handler</span><span class="p">,</span>
+		<span class="p">},</span>
+	<span class="p">},</span>
+	<span class="nx">Streams</span><span class="p">:</span> <span class="p">[]</span><a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#StreamDesc"><span class="nx">StreamDesc</span></a><span class="p">{</span>
+		<span class="p">{</span>
+			<span class="nx">StreamName</span><span class="p">:</span>    <span class="s">&#34;StreamJobOutput&#34;</span><span class="p">,</span>
+			<span class="nx">Handler</span><span class="p">:</span>       <span class="nx">_JobService_StreamJobOutput_Handler</span><span class="p">,</span>
+			<span class="nx">ServerStreams</span><span class="p">:</span> <a href="https://pkg.go.dev/builtin#true"><span class="kc">true</span></a><span class="p">,</span>
+		<span class="p">},</span>
+	<span class="p">},</span>
+	<span class="nx">Metadata</span><span class="p">:</span> <span class="s">&#34;job.proto&#34;</span><span class="p">,</span>
+<span class="p">}</span></pre>
+  <p>JobService_ServiceDesc is the grpc.ServiceDesc for JobService service.
+It&apos;s only intended for direct use with grpc.RegisterService,
+and not to be introspected or modified (even as a copy)
+<h3 id="pkg-functions">Functions</h3>
+  <h3 id="RegisterJobServiceServer">func RegisterJobServiceServer</h3>
+    <pre class="chroma"><span class="kd">func</span> <span class="nf">RegisterJobServiceServer</span><span class="p">(</span><span class="nx">s</span> <a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#ServiceRegistrar"><span class="nx">ServiceRegistrar</span></a><span class="p">,</span> <span class="nx">srv</span> <a href="#JobServiceServer"><span class="nx">JobServiceServer</span></a><span class="p">)</span></pre>
+    <h3 id="pkg-types">Types</h3>
+  <h3 id="JobIdentifier">type JobIdentifier</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">JobIdentifier</span> <span class="kd">struct</span> <span class="p">{</span>
+
+	<span class="c1">// A unique string representing the running job.
+</span><span class="c1"></span>	<span id="JobIdentifier.JobId"><span class="nx">JobId</span></span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a> <span class="s">`protobuf:&#34;bytes,1,opt,name=jobId,proto3&#34; json:&#34;jobId,omitempty&#34;`</span>
+	<span class="c1">// contains filtered or unexported fields
+</span><span class="c1"></span><span class="p">}</span></pre>
+    <p>JobIdentifier contains a jobId field. Set this field to the jobId value
+returned when a job successfully starts.
+<details class="deprecated"><summary><h4 id="JobIdentifier.Descriptor">func (*JobIdentifier) Descriptor <span class="deprecated-tag">deprecated</span></h4></summary>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#JobIdentifier"><span class="nx">JobIdentifier</span></a><span class="p">)</span> <span class="nf">Descriptor</span><span class="p">()</span> <span class="p">([]</span><a href="https://pkg.go.dev/builtin#byte"><span class="kt">byte</span></a><span class="p">,</span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#int"><span class="kt">int</span></a><span class="p">)</span></pre>
+  <p>Deprecated: Use JobIdentifier.ProtoReflect.Descriptor instead.
+</details><h4 id="JobIdentifier.GetJobId">func (*JobIdentifier) GetJobId</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobIdentifier"><span class="nx">JobIdentifier</span></a><span class="p">)</span> <span class="nf">GetJobId</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h4 id="JobIdentifier.ProtoMessage">func (*JobIdentifier) ProtoMessage</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#JobIdentifier"><span class="nx">JobIdentifier</span></a><span class="p">)</span> <span class="nf">ProtoMessage</span><span class="p">()</span></pre>
+  <h4 id="JobIdentifier.ProtoReflect">func (*JobIdentifier) ProtoReflect</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobIdentifier"><span class="nx">JobIdentifier</span></a><span class="p">)</span> <span class="nf">ProtoReflect</span><span class="p">()</span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#Message"><span class="nx">Message</span></a></pre>
+  <h4 id="JobIdentifier.Reset">func (*JobIdentifier) Reset</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobIdentifier"><span class="nx">JobIdentifier</span></a><span class="p">)</span> <span class="nf">Reset</span><span class="p">()</span></pre>
+  <h4 id="JobIdentifier.String">func (*JobIdentifier) String</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobIdentifier"><span class="nx">JobIdentifier</span></a><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h3 id="JobInfo">type JobInfo</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">JobInfo</span> <span class="kd">struct</span> <span class="p">{</span>
+
+	<span class="c1">// A unique string representing the running job.
+</span><span class="c1"></span>	<span id="JobInfo.JobId"><span class="nx">JobId</span></span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a> <span class="s">`protobuf:&#34;bytes,1,opt,name=jobId,proto3&#34; json:&#34;jobId,omitempty&#34;`</span>
+	<span class="c1">// The host system timestamp for when the job started.
+</span><span class="c1"></span>	<span id="JobInfo.JobStart"><span class="nx">JobStart</span></span> <span class="o">*</span><a href="https://pkg.go.dev/google.golang.org/protobuf/types/known/timestamppb"><span class="nx">timestamppb</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/types/known/timestamppb#Timestamp"><span class="nx">Timestamp</span></a> <span class="s">`protobuf:&#34;bytes,2,opt,name=jobStart,proto3&#34; json:&#34;jobStart,omitempty&#34;`</span>
+	<span class="c1">// The job command line being executed.
+</span><span class="c1"></span>	<span id="JobInfo.JobCommand"><span class="nx">JobCommand</span></span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a> <span class="s">`protobuf:&#34;bytes,3,opt,name=jobCommand,proto3&#34; json:&#34;jobCommand,omitempty&#34;`</span>
+	<span class="c1">// The name of the root file system folder to use.
+</span><span class="c1"></span>	<span id="JobInfo.RootFS"><span class="nx">RootFS</span></span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a> <span class="s">`protobuf:&#34;bytes,4,opt,name=rootFS,proto3&#34; json:&#34;rootFS,omitempty&#34;`</span>
+	<span class="c1">// A number representing the proportion of CPU shares the job has.
+</span><span class="c1"></span>	<span id="JobInfo.CpuShares"><span class="nx">CpuShares</span></span> <a href="https://pkg.go.dev/builtin#uint32"><span class="kt">uint32</span></a> <span class="s">`protobuf:&#34;varint,5,opt,name=cpuShares,proto3&#34; json:&#34;cpuShares,omitempty&#34;`</span>
+	<span class="c1">// Maximum memory limit in bytes.
+</span><span class="c1"></span>	<span id="JobInfo.MemoryLimitInBytes"><span class="nx">MemoryLimitInBytes</span></span> <a href="https://pkg.go.dev/builtin#uint64"><span class="kt">uint64</span></a> <span class="s">`protobuf:&#34;varint,6,opt,name=memoryLimitInBytes,proto3&#34; json:&#34;memoryLimitInBytes,omitempty&#34;`</span>
+	<span class="c1">// A string in the form &lt;device&gt;:&lt;io/s limit&gt; (ex. /dev/sdc:1200) use to limit
+</span><span class="c1"></span>	<span class="c1">// read I/O operations per second.
+</span><span class="c1"></span>	<span id="JobInfo.DiskReadIopsLimit"><span class="nx">DiskReadIopsLimit</span></span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a> <span class="s">`protobuf:&#34;bytes,7,opt,name=diskReadIopsLimit,proto3&#34; json:&#34;diskReadIopsLimit,omitempty&#34;`</span>
+	<span class="c1">// A string in the form &lt;device&gt;:&lt;io/s limit&gt; (ex. /dev/sdc:1200) use to limit
+</span><span class="c1"></span>	<span class="c1">// write I/O operations per second.
+</span><span class="c1"></span>	<span id="JobInfo.DiskWriteIopsLimit"><span class="nx">DiskWriteIopsLimit</span></span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a> <span class="s">`protobuf:&#34;bytes,8,opt,name=diskWriteIopsLimit,proto3&#34; json:&#34;diskWriteIopsLimit,omitempty&#34;`</span>
+	<span class="c1">// contains filtered or unexported fields
+</span><span class="c1"></span><span class="p">}</span></pre>
+    <p>JobInfo contains the settings of each running job.
+<details class="deprecated"><summary><h4 id="JobInfo.Descriptor">func (*JobInfo) Descriptor <span class="deprecated-tag">deprecated</span></h4></summary>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#JobInfo"><span class="nx">JobInfo</span></a><span class="p">)</span> <span class="nf">Descriptor</span><span class="p">()</span> <span class="p">([]</span><a href="https://pkg.go.dev/builtin#byte"><span class="kt">byte</span></a><span class="p">,</span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#int"><span class="kt">int</span></a><span class="p">)</span></pre>
+  <p>Deprecated: Use JobInfo.ProtoReflect.Descriptor instead.
+</details><h4 id="JobInfo.GetCpuShares">func (*JobInfo) GetCpuShares</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobInfo"><span class="nx">JobInfo</span></a><span class="p">)</span> <span class="nf">GetCpuShares</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#uint32"><span class="kt">uint32</span></a></pre>
+  <h4 id="JobInfo.GetDiskReadIopsLimit">func (*JobInfo) GetDiskReadIopsLimit</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobInfo"><span class="nx">JobInfo</span></a><span class="p">)</span> <span class="nf">GetDiskReadIopsLimit</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h4 id="JobInfo.GetDiskWriteIopsLimit">func (*JobInfo) GetDiskWriteIopsLimit</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobInfo"><span class="nx">JobInfo</span></a><span class="p">)</span> <span class="nf">GetDiskWriteIopsLimit</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h4 id="JobInfo.GetJobCommand">func (*JobInfo) GetJobCommand</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobInfo"><span class="nx">JobInfo</span></a><span class="p">)</span> <span class="nf">GetJobCommand</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h4 id="JobInfo.GetJobId">func (*JobInfo) GetJobId</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobInfo"><span class="nx">JobInfo</span></a><span class="p">)</span> <span class="nf">GetJobId</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h4 id="JobInfo.GetJobStart">func (*JobInfo) GetJobStart</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobInfo"><span class="nx">JobInfo</span></a><span class="p">)</span> <span class="nf">GetJobStart</span><span class="p">()</span> <span class="o">*</span><a href="https://pkg.go.dev/google.golang.org/protobuf/types/known/timestamppb"><span class="nx">timestamppb</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/types/known/timestamppb#Timestamp"><span class="nx">Timestamp</span></a></pre>
+  <h4 id="JobInfo.GetMemoryLimitInBytes">func (*JobInfo) GetMemoryLimitInBytes</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobInfo"><span class="nx">JobInfo</span></a><span class="p">)</span> <span class="nf">GetMemoryLimitInBytes</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#uint64"><span class="kt">uint64</span></a></pre>
+  <h4 id="JobInfo.GetRootFS">func (*JobInfo) GetRootFS</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobInfo"><span class="nx">JobInfo</span></a><span class="p">)</span> <span class="nf">GetRootFS</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h4 id="JobInfo.ProtoMessage">func (*JobInfo) ProtoMessage</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#JobInfo"><span class="nx">JobInfo</span></a><span class="p">)</span> <span class="nf">ProtoMessage</span><span class="p">()</span></pre>
+  <h4 id="JobInfo.ProtoReflect">func (*JobInfo) ProtoReflect</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobInfo"><span class="nx">JobInfo</span></a><span class="p">)</span> <span class="nf">ProtoReflect</span><span class="p">()</span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#Message"><span class="nx">Message</span></a></pre>
+  <h4 id="JobInfo.Reset">func (*JobInfo) Reset</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobInfo"><span class="nx">JobInfo</span></a><span class="p">)</span> <span class="nf">Reset</span><span class="p">()</span></pre>
+  <h4 id="JobInfo.String">func (*JobInfo) String</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobInfo"><span class="nx">JobInfo</span></a><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h3 id="JobOutput">type JobOutput</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">JobOutput</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span id="JobOutput.Output"><span class="nx">Output</span></span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a> <span class="s">`protobuf:&#34;bytes,1,opt,name=output,proto3&#34; json:&#34;output,omitempty&#34;`</span>
+	<span class="c1">// contains filtered or unexported fields
+</span><span class="c1"></span><span class="p">}</span></pre>
+    <p>JobOutput contains the streamed output of the running job.
+<details class="deprecated"><summary><h4 id="JobOutput.Descriptor">func (*JobOutput) Descriptor <span class="deprecated-tag">deprecated</span></h4></summary>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#JobOutput"><span class="nx">JobOutput</span></a><span class="p">)</span> <span class="nf">Descriptor</span><span class="p">()</span> <span class="p">([]</span><a href="https://pkg.go.dev/builtin#byte"><span class="kt">byte</span></a><span class="p">,</span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#int"><span class="kt">int</span></a><span class="p">)</span></pre>
+  <p>Deprecated: Use JobOutput.ProtoReflect.Descriptor instead.
+</details><h4 id="JobOutput.GetOutput">func (*JobOutput) GetOutput</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobOutput"><span class="nx">JobOutput</span></a><span class="p">)</span> <span class="nf">GetOutput</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h4 id="JobOutput.ProtoMessage">func (*JobOutput) ProtoMessage</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#JobOutput"><span class="nx">JobOutput</span></a><span class="p">)</span> <span class="nf">ProtoMessage</span><span class="p">()</span></pre>
+  <h4 id="JobOutput.ProtoReflect">func (*JobOutput) ProtoReflect</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobOutput"><span class="nx">JobOutput</span></a><span class="p">)</span> <span class="nf">ProtoReflect</span><span class="p">()</span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#Message"><span class="nx">Message</span></a></pre>
+  <h4 id="JobOutput.Reset">func (*JobOutput) Reset</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobOutput"><span class="nx">JobOutput</span></a><span class="p">)</span> <span class="nf">Reset</span><span class="p">()</span></pre>
+  <h4 id="JobOutput.String">func (*JobOutput) String</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#JobOutput"><span class="nx">JobOutput</span></a><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h3 id="JobServiceClient">type JobServiceClient</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">JobServiceClient</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="c1">// Starts the job and returns an identifier for the job.
+</span><span class="c1"></span>	<span id="JobServiceClient.StartJob"><span class="nf">StartJob</span></span><span class="p">(</span><span class="nx">ctx</span> <a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="nx">in</span> <span class="o">*</span><a href="#StartRequest"><span class="nx">StartRequest</span></a><span class="p">,</span> <span class="nx">opts</span> <span class="o">...</span><a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#CallOption"><span class="nx">CallOption</span></a><span class="p">)</span> <span class="p">(</span><span class="o">*</span><a href="#StartResponse"><span class="nx">StartResponse</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span>
+	<span class="c1">// Returns a list of running jobs with their jobId and jobStart timestamps.
+</span><span class="c1"></span>	<span id="JobServiceClient.ListJobs"><span class="nf">ListJobs</span></span><span class="p">(</span><span class="nx">ctx</span> <a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="nx">in</span> <span class="o">*</span><a href="#ListJobsRequest"><span class="nx">ListJobsRequest</span></a><span class="p">,</span> <span class="nx">opts</span> <span class="o">...</span><a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#CallOption"><span class="nx">CallOption</span></a><span class="p">)</span> <span class="p">(</span><span class="o">*</span><a href="#ListJobsResponse"><span class="nx">ListJobsResponse</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span>
+	<span class="c1">// Stream the output of the job.
+</span><span class="c1"></span>	<span id="JobServiceClient.StreamJobOutput"><span class="nf">StreamJobOutput</span></span><span class="p">(</span><span class="nx">ctx</span> <a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="nx">in</span> <span class="o">*</span><a href="#JobIdentifier"><span class="nx">JobIdentifier</span></a><span class="p">,</span> <span class="nx">opts</span> <span class="o">...</span><a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#CallOption"><span class="nx">CallOption</span></a><span class="p">)</span> <span class="p">(</span><a href="#JobService_StreamJobOutputClient"><span class="nx">JobService_StreamJobOutputClient</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span>
+	<span class="c1">// Stops a running job.
+</span><span class="c1"></span>	<span id="JobServiceClient.StopJob"><span class="nf">StopJob</span></span><span class="p">(</span><span class="nx">ctx</span> <a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="nx">in</span> <span class="o">*</span><a href="#JobIdentifier"><span class="nx">JobIdentifier</span></a><span class="p">,</span> <span class="nx">opts</span> <span class="o">...</span><a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#CallOption"><span class="nx">CallOption</span></a><span class="p">)</span> <span class="p">(</span><span class="o">*</span><a href="#StopResponse"><span class="nx">StopResponse</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span>
+<span class="p">}</span></pre>
+    <p>JobServiceClient is the client API for JobService service.
+<p>For semantics around ctx use and closing/ending streaming RPCs, please refer to <a href="https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream">https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream</a>.
+<h4 id="NewJobServiceClient">func NewJobServiceClient</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="nf">NewJobServiceClient</span><span class="p">(</span><span class="nx">cc</span> <a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#ClientConnInterface"><span class="nx">ClientConnInterface</span></a><span class="p">)</span> <a href="#JobServiceClient"><span class="nx">JobServiceClient</span></a></pre>
+  <h3 id="JobServiceServer">type JobServiceServer</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">JobServiceServer</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="c1">// Starts the job and returns an identifier for the job.
+</span><span class="c1"></span>	<span id="JobServiceServer.StartJob"><span class="nf">StartJob</span></span><span class="p">(</span><a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="o">*</span><a href="#StartRequest"><span class="nx">StartRequest</span></a><span class="p">)</span> <span class="p">(</span><span class="o">*</span><a href="#StartResponse"><span class="nx">StartResponse</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span>
+	<span class="c1">// Returns a list of running jobs with their jobId and jobStart timestamps.
+</span><span class="c1"></span>	<span id="JobServiceServer.ListJobs"><span class="nf">ListJobs</span></span><span class="p">(</span><a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="o">*</span><a href="#ListJobsRequest"><span class="nx">ListJobsRequest</span></a><span class="p">)</span> <span class="p">(</span><span class="o">*</span><a href="#ListJobsResponse"><span class="nx">ListJobsResponse</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span>
+	<span class="c1">// Stream the output of the job.
+</span><span class="c1"></span>	<span id="JobServiceServer.StreamJobOutput"><span class="nf">StreamJobOutput</span></span><span class="p">(</span><span class="o">*</span><a href="#JobIdentifier"><span class="nx">JobIdentifier</span></a><span class="p">,</span> <a href="#JobService_StreamJobOutputServer"><span class="nx">JobService_StreamJobOutputServer</span></a><span class="p">)</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a>
+	<span class="c1">// Stops a running job.
+</span><span class="c1"></span>	<span id="JobServiceServer.StopJob"><span class="nf">StopJob</span></span><span class="p">(</span><a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="o">*</span><a href="#JobIdentifier"><span class="nx">JobIdentifier</span></a><span class="p">)</span> <span class="p">(</span><span class="o">*</span><a href="#StopResponse"><span class="nx">StopResponse</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span>
+	<span class="c1">// contains filtered or unexported methods
+</span><span class="c1"></span><span class="p">}</span></pre>
+    <p>JobServiceServer is the server API for JobService service.
+All implementations must embed UnimplementedJobServiceServer
+for forward compatibility
+<h3 id="JobService_StreamJobOutputClient">type JobService_StreamJobOutputClient</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">JobService_StreamJobOutputClient</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span id="JobService_StreamJobOutputClient.Recv"><span class="nf">Recv</span></span><span class="p">()</span> <span class="p">(</span><span class="o">*</span><a href="#JobOutput"><span class="nx">JobOutput</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span>
+	<a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#ClientStream"><span class="nx">ClientStream</span></a>
+<span class="p">}</span></pre>
+    <h3 id="JobService_StreamJobOutputServer">type JobService_StreamJobOutputServer</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">JobService_StreamJobOutputServer</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span id="JobService_StreamJobOutputServer.Send"><span class="nf">Send</span></span><span class="p">(</span><span class="o">*</span><a href="#JobOutput"><span class="nx">JobOutput</span></a><span class="p">)</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a>
+	<a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#ServerStream"><span class="nx">ServerStream</span></a>
+<span class="p">}</span></pre>
+    <h3 id="ListJobsRequest">type ListJobsRequest</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">ListJobsRequest</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="c1">// contains filtered or unexported fields
+</span><span class="c1"></span><span class="p">}</span></pre>
+    <p>ListJobsRequest contains no fields. Merely pass it to the ListJobs method to
+retrieve the list of running jobs.
+<details class="deprecated"><summary><h4 id="ListJobsRequest.Descriptor">func (*ListJobsRequest) Descriptor <span class="deprecated-tag">deprecated</span></h4></summary>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#ListJobsRequest"><span class="nx">ListJobsRequest</span></a><span class="p">)</span> <span class="nf">Descriptor</span><span class="p">()</span> <span class="p">([]</span><a href="https://pkg.go.dev/builtin#byte"><span class="kt">byte</span></a><span class="p">,</span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#int"><span class="kt">int</span></a><span class="p">)</span></pre>
+  <p>Deprecated: Use ListJobsRequest.ProtoReflect.Descriptor instead.
+</details><h4 id="ListJobsRequest.ProtoMessage">func (*ListJobsRequest) ProtoMessage</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#ListJobsRequest"><span class="nx">ListJobsRequest</span></a><span class="p">)</span> <span class="nf">ProtoMessage</span><span class="p">()</span></pre>
+  <h4 id="ListJobsRequest.ProtoReflect">func (*ListJobsRequest) ProtoReflect</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#ListJobsRequest"><span class="nx">ListJobsRequest</span></a><span class="p">)</span> <span class="nf">ProtoReflect</span><span class="p">()</span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#Message"><span class="nx">Message</span></a></pre>
+  <h4 id="ListJobsRequest.Reset">func (*ListJobsRequest) Reset</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#ListJobsRequest"><span class="nx">ListJobsRequest</span></a><span class="p">)</span> <span class="nf">Reset</span><span class="p">()</span></pre>
+  <h4 id="ListJobsRequest.String">func (*ListJobsRequest) String</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#ListJobsRequest"><span class="nx">ListJobsRequest</span></a><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h3 id="ListJobsResponse">type ListJobsResponse</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">ListJobsResponse</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span id="ListJobsResponse.JobInfo"><span class="nx">JobInfo</span></span> <span class="p">[]</span><span class="o">*</span><a href="#JobInfo"><span class="nx">JobInfo</span></a> <span class="s">`protobuf:&#34;bytes,1,rep,name=jobInfo,proto3&#34; json:&#34;jobInfo,omitempty&#34;`</span>
+	<span class="c1">// contains filtered or unexported fields
+</span><span class="c1"></span><span class="p">}</span></pre>
+    <p>ListJobsResponse returns the JobInfo for each running job.
+<details class="deprecated"><summary><h4 id="ListJobsResponse.Descriptor">func (*ListJobsResponse) Descriptor <span class="deprecated-tag">deprecated</span></h4></summary>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#ListJobsResponse"><span class="nx">ListJobsResponse</span></a><span class="p">)</span> <span class="nf">Descriptor</span><span class="p">()</span> <span class="p">([]</span><a href="https://pkg.go.dev/builtin#byte"><span class="kt">byte</span></a><span class="p">,</span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#int"><span class="kt">int</span></a><span class="p">)</span></pre>
+  <p>Deprecated: Use ListJobsResponse.ProtoReflect.Descriptor instead.
+</details><h4 id="ListJobsResponse.GetJobInfo">func (*ListJobsResponse) GetJobInfo</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#ListJobsResponse"><span class="nx">ListJobsResponse</span></a><span class="p">)</span> <span class="nf">GetJobInfo</span><span class="p">()</span> <span class="p">[]</span><span class="o">*</span><a href="#JobInfo"><span class="nx">JobInfo</span></a></pre>
+  <h4 id="ListJobsResponse.ProtoMessage">func (*ListJobsResponse) ProtoMessage</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#ListJobsResponse"><span class="nx">ListJobsResponse</span></a><span class="p">)</span> <span class="nf">ProtoMessage</span><span class="p">()</span></pre>
+  <h4 id="ListJobsResponse.ProtoReflect">func (*ListJobsResponse) ProtoReflect</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#ListJobsResponse"><span class="nx">ListJobsResponse</span></a><span class="p">)</span> <span class="nf">ProtoReflect</span><span class="p">()</span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#Message"><span class="nx">Message</span></a></pre>
+  <h4 id="ListJobsResponse.Reset">func (*ListJobsResponse) Reset</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#ListJobsResponse"><span class="nx">ListJobsResponse</span></a><span class="p">)</span> <span class="nf">Reset</span><span class="p">()</span></pre>
+  <h4 id="ListJobsResponse.String">func (*ListJobsResponse) String</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#ListJobsResponse"><span class="nx">ListJobsResponse</span></a><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h3 id="StartRequest">type StartRequest</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">StartRequest</span> <span class="kd">struct</span> <span class="p">{</span>
+
+	<span class="c1">// The job command line to run.
+</span><span class="c1"></span>	<span id="StartRequest.JobCommand"><span class="nx">JobCommand</span></span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a> <span class="s">`protobuf:&#34;bytes,1,opt,name=jobCommand,proto3&#34; json:&#34;jobCommand,omitempty&#34;`</span>
+	<span class="c1">// The name of the root file system folder to use.
+</span><span class="c1"></span>	<span id="StartRequest.RootFS"><span class="nx">RootFS</span></span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a> <span class="s">`protobuf:&#34;bytes,2,opt,name=rootFS,proto3&#34; json:&#34;rootFS,omitempty&#34;`</span>
+	<span class="c1">// A number representing the proportion of CPU shares the job has.
+</span><span class="c1"></span>	<span id="StartRequest.CpuShares"><span class="nx">CpuShares</span></span> <a href="https://pkg.go.dev/builtin#uint32"><span class="kt">uint32</span></a> <span class="s">`protobuf:&#34;varint,3,opt,name=cpuShares,proto3&#34; json:&#34;cpuShares,omitempty&#34;`</span>
+	<span class="c1">// Maximum memory limit in bytes.
+</span><span class="c1"></span>	<span id="StartRequest.MemoryLimitInBytes"><span class="nx">MemoryLimitInBytes</span></span> <a href="https://pkg.go.dev/builtin#uint64"><span class="kt">uint64</span></a> <span class="s">`protobuf:&#34;varint,4,opt,name=memoryLimitInBytes,proto3&#34; json:&#34;memoryLimitInBytes,omitempty&#34;`</span>
+	<span class="c1">// A string in the form &lt;device&gt;:&lt;io/s limit&gt; (ex. /dev/sdc:1200) use to limit
+</span><span class="c1"></span>	<span class="c1">// read I/O operations per second.
+</span><span class="c1"></span>	<span id="StartRequest.DiskReadIopsLimit"><span class="nx">DiskReadIopsLimit</span></span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a> <span class="s">`protobuf:&#34;bytes,5,opt,name=diskReadIopsLimit,proto3&#34; json:&#34;diskReadIopsLimit,omitempty&#34;`</span>
+	<span class="c1">// A string in the form &lt;device&gt;:&lt;io/s limit&gt; (ex. /dev/sdc:1200) use to limit
+</span><span class="c1"></span>	<span class="c1">// write I/O operations per second.
+</span><span class="c1"></span>	<span id="StartRequest.DiskWriteIopsLimit"><span class="nx">DiskWriteIopsLimit</span></span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a> <span class="s">`protobuf:&#34;bytes,6,opt,name=diskWriteIopsLimit,proto3&#34; json:&#34;diskWriteIopsLimit,omitempty&#34;`</span>
+	<span class="c1">// contains filtered or unexported fields
+</span><span class="c1"></span><span class="p">}</span></pre>
+    <p>StartRequest contains the job command and rootFS to execute the command in.
+<details class="deprecated"><summary><h4 id="StartRequest.Descriptor">func (*StartRequest) Descriptor <span class="deprecated-tag">deprecated</span></h4></summary>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#StartRequest"><span class="nx">StartRequest</span></a><span class="p">)</span> <span class="nf">Descriptor</span><span class="p">()</span> <span class="p">([]</span><a href="https://pkg.go.dev/builtin#byte"><span class="kt">byte</span></a><span class="p">,</span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#int"><span class="kt">int</span></a><span class="p">)</span></pre>
+  <p>Deprecated: Use StartRequest.ProtoReflect.Descriptor instead.
+</details><h4 id="StartRequest.GetCpuShares">func (*StartRequest) GetCpuShares</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#StartRequest"><span class="nx">StartRequest</span></a><span class="p">)</span> <span class="nf">GetCpuShares</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#uint32"><span class="kt">uint32</span></a></pre>
+  <h4 id="StartRequest.GetDiskReadIopsLimit">func (*StartRequest) GetDiskReadIopsLimit</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#StartRequest"><span class="nx">StartRequest</span></a><span class="p">)</span> <span class="nf">GetDiskReadIopsLimit</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h4 id="StartRequest.GetDiskWriteIopsLimit">func (*StartRequest) GetDiskWriteIopsLimit</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#StartRequest"><span class="nx">StartRequest</span></a><span class="p">)</span> <span class="nf">GetDiskWriteIopsLimit</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h4 id="StartRequest.GetJobCommand">func (*StartRequest) GetJobCommand</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#StartRequest"><span class="nx">StartRequest</span></a><span class="p">)</span> <span class="nf">GetJobCommand</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h4 id="StartRequest.GetMemoryLimitInBytes">func (*StartRequest) GetMemoryLimitInBytes</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#StartRequest"><span class="nx">StartRequest</span></a><span class="p">)</span> <span class="nf">GetMemoryLimitInBytes</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#uint64"><span class="kt">uint64</span></a></pre>
+  <h4 id="StartRequest.GetRootFS">func (*StartRequest) GetRootFS</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#StartRequest"><span class="nx">StartRequest</span></a><span class="p">)</span> <span class="nf">GetRootFS</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h4 id="StartRequest.ProtoMessage">func (*StartRequest) ProtoMessage</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#StartRequest"><span class="nx">StartRequest</span></a><span class="p">)</span> <span class="nf">ProtoMessage</span><span class="p">()</span></pre>
+  <h4 id="StartRequest.ProtoReflect">func (*StartRequest) ProtoReflect</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#StartRequest"><span class="nx">StartRequest</span></a><span class="p">)</span> <span class="nf">ProtoReflect</span><span class="p">()</span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#Message"><span class="nx">Message</span></a></pre>
+  <h4 id="StartRequest.Reset">func (*StartRequest) Reset</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#StartRequest"><span class="nx">StartRequest</span></a><span class="p">)</span> <span class="nf">Reset</span><span class="p">()</span></pre>
+  <h4 id="StartRequest.String">func (*StartRequest) String</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#StartRequest"><span class="nx">StartRequest</span></a><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h3 id="StartResponse">type StartResponse</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">StartResponse</span> <span class="kd">struct</span> <span class="p">{</span>
+
+	<span class="c1">// A unique string representing the running job.
+</span><span class="c1"></span>	<span id="StartResponse.JobId"><span class="nx">JobId</span></span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a> <span class="s">`protobuf:&#34;bytes,1,opt,name=jobId,proto3&#34; json:&#34;jobId,omitempty&#34;`</span>
+	<span class="c1">// The host system timestamp for when the job started.
+</span><span class="c1"></span>	<span id="StartResponse.JobStart"><span class="nx">JobStart</span></span> <span class="o">*</span><a href="https://pkg.go.dev/google.golang.org/protobuf/types/known/timestamppb"><span class="nx">timestamppb</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/types/known/timestamppb#Timestamp"><span class="nx">Timestamp</span></a> <span class="s">`protobuf:&#34;bytes,2,opt,name=jobStart,proto3&#34; json:&#34;jobStart,omitempty&#34;`</span>
+	<span class="c1">// contains filtered or unexported fields
+</span><span class="c1"></span><span class="p">}</span></pre>
+    <p>StartResponse is returned by StartJob if there is no error.
+<details class="deprecated"><summary><h4 id="StartResponse.Descriptor">func (*StartResponse) Descriptor <span class="deprecated-tag">deprecated</span></h4></summary>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#StartResponse"><span class="nx">StartResponse</span></a><span class="p">)</span> <span class="nf">Descriptor</span><span class="p">()</span> <span class="p">([]</span><a href="https://pkg.go.dev/builtin#byte"><span class="kt">byte</span></a><span class="p">,</span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#int"><span class="kt">int</span></a><span class="p">)</span></pre>
+  <p>Deprecated: Use StartResponse.ProtoReflect.Descriptor instead.
+</details><h4 id="StartResponse.GetJobId">func (*StartResponse) GetJobId</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#StartResponse"><span class="nx">StartResponse</span></a><span class="p">)</span> <span class="nf">GetJobId</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h4 id="StartResponse.GetJobStart">func (*StartResponse) GetJobStart</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#StartResponse"><span class="nx">StartResponse</span></a><span class="p">)</span> <span class="nf">GetJobStart</span><span class="p">()</span> <span class="o">*</span><a href="https://pkg.go.dev/google.golang.org/protobuf/types/known/timestamppb"><span class="nx">timestamppb</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/types/known/timestamppb#Timestamp"><span class="nx">Timestamp</span></a></pre>
+  <h4 id="StartResponse.ProtoMessage">func (*StartResponse) ProtoMessage</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#StartResponse"><span class="nx">StartResponse</span></a><span class="p">)</span> <span class="nf">ProtoMessage</span><span class="p">()</span></pre>
+  <h4 id="StartResponse.ProtoReflect">func (*StartResponse) ProtoReflect</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#StartResponse"><span class="nx">StartResponse</span></a><span class="p">)</span> <span class="nf">ProtoReflect</span><span class="p">()</span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#Message"><span class="nx">Message</span></a></pre>
+  <h4 id="StartResponse.Reset">func (*StartResponse) Reset</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#StartResponse"><span class="nx">StartResponse</span></a><span class="p">)</span> <span class="nf">Reset</span><span class="p">()</span></pre>
+  <h4 id="StartResponse.String">func (*StartResponse) String</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#StartResponse"><span class="nx">StartResponse</span></a><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h3 id="StopResponse">type StopResponse</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">StopResponse</span> <span class="kd">struct</span> <span class="p">{</span>
+
+	<span class="c1">// status represents the final status of the job after stopping
+</span><span class="c1"></span>	<span id="StopResponse.Status"><span class="nx">Status</span></span> <a href="#StopResponse_JobStatus"><span class="nx">StopResponse_JobStatus</span></a> <span class="s">`protobuf:&#34;varint,1,opt,name=status,proto3,enum=job.StopResponse_JobStatus&#34; json:&#34;status,omitempty&#34;`</span>
+	<span class="c1">// contains filtered or unexported fields
+</span><span class="c1"></span><span class="p">}</span></pre>
+    <p>StopResponse will return a status of STOPPED once the job command is stopped.
+<details class="deprecated"><summary><h4 id="StopResponse.Descriptor">func (*StopResponse) Descriptor <span class="deprecated-tag">deprecated</span></h4></summary>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#StopResponse"><span class="nx">StopResponse</span></a><span class="p">)</span> <span class="nf">Descriptor</span><span class="p">()</span> <span class="p">([]</span><a href="https://pkg.go.dev/builtin#byte"><span class="kt">byte</span></a><span class="p">,</span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#int"><span class="kt">int</span></a><span class="p">)</span></pre>
+  <p>Deprecated: Use StopResponse.ProtoReflect.Descriptor instead.
+</details><h4 id="StopResponse.GetStatus">func (*StopResponse) GetStatus</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#StopResponse"><span class="nx">StopResponse</span></a><span class="p">)</span> <span class="nf">GetStatus</span><span class="p">()</span> <a href="#StopResponse_JobStatus"><span class="nx">StopResponse_JobStatus</span></a></pre>
+  <h4 id="StopResponse.ProtoMessage">func (*StopResponse) ProtoMessage</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#StopResponse"><span class="nx">StopResponse</span></a><span class="p">)</span> <span class="nf">ProtoMessage</span><span class="p">()</span></pre>
+  <h4 id="StopResponse.ProtoReflect">func (*StopResponse) ProtoReflect</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#StopResponse"><span class="nx">StopResponse</span></a><span class="p">)</span> <span class="nf">ProtoReflect</span><span class="p">()</span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#Message"><span class="nx">Message</span></a></pre>
+  <h4 id="StopResponse.Reset">func (*StopResponse) Reset</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#StopResponse"><span class="nx">StopResponse</span></a><span class="p">)</span> <span class="nf">Reset</span><span class="p">()</span></pre>
+  <h4 id="StopResponse.String">func (*StopResponse) String</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#StopResponse"><span class="nx">StopResponse</span></a><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h3 id="StopResponse_JobStatus">type StopResponse_JobStatus</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">StopResponse_JobStatus</span> <a href="https://pkg.go.dev/builtin#int32"><span class="kt">int32</span></a></pre>
+    <p>The status of the job.
+<pre class="chroma"><span class="kd">const</span> <span class="p">(</span>
+	<span id="StopResponse_UNKNOWN"><span class="nx">StopResponse_UNKNOWN</span></span> <a href="#StopResponse_JobStatus"><span class="nx">StopResponse_JobStatus</span></a> <span class="p">=</span> <span class="mi">0</span> <span class="c1">// Placeholder for an unknown job status
+</span><span class="c1"></span>	<span id="StopResponse_STOPPED"><span class="nx">StopResponse_STOPPED</span></span> <a href="#StopResponse_JobStatus"><span class="nx">StopResponse_JobStatus</span></a> <span class="p">=</span> <span class="mi">1</span> <span class="c1">// The job was stopped successfully
+</span><span class="c1"></span><span class="p">)</span></pre>
+  <h4 id="StopResponse_JobStatus.Descriptor">func (StopResponse_JobStatus) Descriptor</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><a href="#StopResponse_JobStatus"><span class="nx">StopResponse_JobStatus</span></a><span class="p">)</span> <span class="nf">Descriptor</span><span class="p">()</span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#EnumDescriptor"><span class="nx">EnumDescriptor</span></a></pre>
+  <h4 id="StopResponse_JobStatus.Enum">func (StopResponse_JobStatus) Enum</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <a href="#StopResponse_JobStatus"><span class="nx">StopResponse_JobStatus</span></a><span class="p">)</span> <span class="nf">Enum</span><span class="p">()</span> <span class="o">*</span><a href="#StopResponse_JobStatus"><span class="nx">StopResponse_JobStatus</span></a></pre>
+  <details class="deprecated"><summary><h4 id="StopResponse_JobStatus.EnumDescriptor">func (StopResponse_JobStatus) EnumDescriptor <span class="deprecated-tag">deprecated</span></h4></summary>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><a href="#StopResponse_JobStatus"><span class="nx">StopResponse_JobStatus</span></a><span class="p">)</span> <span class="nf">EnumDescriptor</span><span class="p">()</span> <span class="p">([]</span><a href="https://pkg.go.dev/builtin#byte"><span class="kt">byte</span></a><span class="p">,</span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#int"><span class="kt">int</span></a><span class="p">)</span></pre>
+  <p>Deprecated: Use StopResponse_JobStatus.Descriptor instead.
+</details><h4 id="StopResponse_JobStatus.Number">func (StopResponse_JobStatus) Number</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <a href="#StopResponse_JobStatus"><span class="nx">StopResponse_JobStatus</span></a><span class="p">)</span> <span class="nf">Number</span><span class="p">()</span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#EnumNumber"><span class="nx">EnumNumber</span></a></pre>
+  <h4 id="StopResponse_JobStatus.String">func (StopResponse_JobStatus) String</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <a href="#StopResponse_JobStatus"><span class="nx">StopResponse_JobStatus</span></a><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h4 id="StopResponse_JobStatus.Type">func (StopResponse_JobStatus) Type</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><a href="#StopResponse_JobStatus"><span class="nx">StopResponse_JobStatus</span></a><span class="p">)</span> <span class="nf">Type</span><span class="p">()</span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#EnumType"><span class="nx">EnumType</span></a></pre>
+  <h3 id="StreamServiceOutputSender">type StreamServiceOutputSender</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">StreamServiceOutputSender</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span id="StreamServiceOutputSender.JobStream"><span class="nx">JobStream</span></span> <a href="#JobService_StreamJobOutputServer"><span class="nx">JobService_StreamJobOutputServer</span></a>
+<span class="p">}</span></pre>
+    <p>StreamServiceOutputSender implements the api.OutputSender interface and adapts
+sending job.Job output back to the gRPC client. It contains a JobStream
+which is the interface that allows sending job outputs.
+<h4 id="StreamServiceOutputSender.Send">func (StreamServiceOutputSender) Send</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">j</span> <a href="#StreamServiceOutputSender"><span class="nx">StreamServiceOutputSender</span></a><span class="p">)</span> <span class="nf">Send</span><span class="p">(</span><span class="nx">output</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a><span class="p">)</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a></pre>
+  <p>Send sends the output of a job to the gRPC client. It takes a string
+parameter `output`, which represents the job output to be sent.
+It returns an error if there was a problem sending the output.
+The error value can be `nil` if the output was sent successfully.
+<h3 id="UnimplementedJobServiceServer">type UnimplementedJobServiceServer</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">UnimplementedJobServiceServer</span> <span class="kd">struct</span> <span class="p">{</span>
+<span class="p">}</span></pre>
+    <p>UnimplementedJobServiceServer must be embedded to have forward compatible implementations.
+<h4 id="UnimplementedJobServiceServer.ListJobs">func (UnimplementedJobServiceServer) ListJobs</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><a href="#UnimplementedJobServiceServer"><span class="nx">UnimplementedJobServiceServer</span></a><span class="p">)</span> <span class="nf">ListJobs</span><span class="p">(</span><a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="o">*</span><a href="#ListJobsRequest"><span class="nx">ListJobsRequest</span></a><span class="p">)</span> <span class="p">(</span><span class="o">*</span><a href="#ListJobsResponse"><span class="nx">ListJobsResponse</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span></pre>
+  <h4 id="UnimplementedJobServiceServer.StartJob">func (UnimplementedJobServiceServer) StartJob</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><a href="#UnimplementedJobServiceServer"><span class="nx">UnimplementedJobServiceServer</span></a><span class="p">)</span> <span class="nf">StartJob</span><span class="p">(</span><a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="o">*</span><a href="#StartRequest"><span class="nx">StartRequest</span></a><span class="p">)</span> <span class="p">(</span><span class="o">*</span><a href="#StartResponse"><span class="nx">StartResponse</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span></pre>
+  <h4 id="UnimplementedJobServiceServer.StopJob">func (UnimplementedJobServiceServer) StopJob</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><a href="#UnimplementedJobServiceServer"><span class="nx">UnimplementedJobServiceServer</span></a><span class="p">)</span> <span class="nf">StopJob</span><span class="p">(</span><a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="o">*</span><a href="#JobIdentifier"><span class="nx">JobIdentifier</span></a><span class="p">)</span> <span class="p">(</span><span class="o">*</span><a href="#StopResponse"><span class="nx">StopResponse</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span></pre>
+  <h4 id="UnimplementedJobServiceServer.StreamJobOutput">func (UnimplementedJobServiceServer) StreamJobOutput</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><a href="#UnimplementedJobServiceServer"><span class="nx">UnimplementedJobServiceServer</span></a><span class="p">)</span> <span class="nf">StreamJobOutput</span><span class="p">(</span><span class="o">*</span><a href="#JobIdentifier"><span class="nx">JobIdentifier</span></a><span class="p">,</span> <a href="#JobService_StreamJobOutputServer"><span class="nx">JobService_StreamJobOutputServer</span></a><span class="p">)</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a></pre>
+  <h3 id="UnsafeJobServiceServer">type UnsafeJobServiceServer</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">UnsafeJobServiceServer</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="c1">// contains filtered or unexported methods
+</span><span class="c1"></span><span class="p">}</span></pre>
+    <p>UnsafeJobServiceServer may be embedded to opt out of forward compatibility for this service.
+Use of this interface is not recommended, as added methods to JobServiceServer will
+result in compilation errors.
+</main>
+    <hr>
+    <footer>
+      <small id="generated-by-footer">
+        Generated with <a href="https://abhinav.github.io/doc2go/">doc2go</a>
+      </small>
+    </footer>
+    <script src="../../../../../../_/js/permalink.js"></script></body>
+</html>

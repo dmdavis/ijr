@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="doc2go">
+    <link href="../../../../../../_/css/main.css" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../../../../_/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../../../../_/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../../../../_/icons/favicon-16x16.png">
+    <link rel="shortcut icon" href="../../../../../../_/icons/favicon.ico"><title>rootfs</title>
+</head>
+  <body>
+    <nav>
+        <a href="../../../../..">github.com</a>/<a href="../../../..">dmdavis</a>/<a href="../../..">ijr</a>/<a href="../..">pkg</a>/<a href="..">api</a>/rootfs<span class="navbar-right">
+          <a href="../../../../../..">Root</a> | <a href="#pkg-index">Index</a></span>
+      </nav>
+    <main><h2 id="pkg-overview">package rootfs</h2>
+<pre class="chroma"><span class="kn">import</span> <span class="s">&#34;github.com/dmdavis/ijr/pkg/api/rootfs&#34;</span></pre>
+<p>Package rootfs contains the Go gRPC implementation of the rootfs.proto
+definitions.
+<h3 id="pkg-index">Index</h3>
+<ul>
+  <li><a href="#pkg-constants">Constants</a></li><li><a href="#pkg-variables">Variables</a></li><li><a href="#RegisterRootFileServiceServer">func RegisterRootFileServiceServer(s grpc.ServiceRegistrar, srv RootFileServiceServer)</a></li>
+  <li>
+      <a href="#DeleteFolderRequest">type DeleteFolderRequest</a>
+      <ul>
+          <li><a href="#DeleteFolderRequest.Descriptor">func (*DeleteFolderRequest) Descriptor() ([]byte, []int)</a> <span class="deprecated-tag">deprecated</span></li>
+          <li><a href="#DeleteFolderRequest.GetFolderName">func (x *DeleteFolderRequest) GetFolderName() string</a></li>
+          <li><a href="#DeleteFolderRequest.ProtoMessage">func (*DeleteFolderRequest) ProtoMessage()</a></li>
+          <li><a href="#DeleteFolderRequest.ProtoReflect">func (x *DeleteFolderRequest) ProtoReflect() protoreflect.Message</a></li>
+          <li><a href="#DeleteFolderRequest.Reset">func (x *DeleteFolderRequest) Reset()</a></li>
+          <li><a href="#DeleteFolderRequest.String">func (x *DeleteFolderRequest) String() string</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#DeleteFolderResponse">type DeleteFolderResponse</a>
+      <ul>
+          <li><a href="#DeleteFolderResponse.Descriptor">func (*DeleteFolderResponse) Descriptor() ([]byte, []int)</a> <span class="deprecated-tag">deprecated</span></li>
+          <li><a href="#DeleteFolderResponse.GetMessage">func (x *DeleteFolderResponse) GetMessage() string</a></li>
+          <li><a href="#DeleteFolderResponse.ProtoMessage">func (*DeleteFolderResponse) ProtoMessage()</a></li>
+          <li><a href="#DeleteFolderResponse.ProtoReflect">func (x *DeleteFolderResponse) ProtoReflect() protoreflect.Message</a></li>
+          <li><a href="#DeleteFolderResponse.Reset">func (x *DeleteFolderResponse) Reset()</a></li>
+          <li><a href="#DeleteFolderResponse.String">func (x *DeleteFolderResponse) String() string</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#ListFoldersRequest">type ListFoldersRequest</a>
+      <ul>
+          <li><a href="#ListFoldersRequest.Descriptor">func (*ListFoldersRequest) Descriptor() ([]byte, []int)</a> <span class="deprecated-tag">deprecated</span></li>
+          <li><a href="#ListFoldersRequest.ProtoMessage">func (*ListFoldersRequest) ProtoMessage()</a></li>
+          <li><a href="#ListFoldersRequest.ProtoReflect">func (x *ListFoldersRequest) ProtoReflect() protoreflect.Message</a></li>
+          <li><a href="#ListFoldersRequest.Reset">func (x *ListFoldersRequest) Reset()</a></li>
+          <li><a href="#ListFoldersRequest.String">func (x *ListFoldersRequest) String() string</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#ListFoldersResponse">type ListFoldersResponse</a>
+      <ul>
+          <li><a href="#ListFoldersResponse.Descriptor">func (*ListFoldersResponse) Descriptor() ([]byte, []int)</a> <span class="deprecated-tag">deprecated</span></li>
+          <li><a href="#ListFoldersResponse.GetFolderNames">func (x *ListFoldersResponse) GetFolderNames() []string</a></li>
+          <li><a href="#ListFoldersResponse.ProtoMessage">func (*ListFoldersResponse) ProtoMessage()</a></li>
+          <li><a href="#ListFoldersResponse.ProtoReflect">func (x *ListFoldersResponse) ProtoReflect() protoreflect.Message</a></li>
+          <li><a href="#ListFoldersResponse.Reset">func (x *ListFoldersResponse) Reset()</a></li>
+          <li><a href="#ListFoldersResponse.String">func (x *ListFoldersResponse) String() string</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#RootFileServiceClient">type RootFileServiceClient</a>
+      <ul>
+          <li><a href="#NewRootFileServiceClient">func NewRootFileServiceClient(cc grpc.ClientConnInterface) RootFileServiceClient</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#RootFileServiceServer">type RootFileServiceServer</a>
+      </li>
+  <li>
+      <a href="#UnimplementedRootFileServiceServer">type UnimplementedRootFileServiceServer</a>
+      <ul>
+          <li><a href="#UnimplementedRootFileServiceServer.DeleteFolder">func (UnimplementedRootFileServiceServer) DeleteFolder(context.Context, *DeleteFolderRequest) (*DeleteFolderResponse, error)</a></li>
+          <li><a href="#UnimplementedRootFileServiceServer.ListFolders">func (UnimplementedRootFileServiceServer) ListFolders(context.Context, *ListFoldersRequest) (*ListFoldersResponse, error)</a></li>
+          <li><a href="#UnimplementedRootFileServiceServer.Upload">func (UnimplementedRootFileServiceServer) Upload(context.Context, *UploadRequest) (*UploadResponse, error)</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#UnsafeRootFileServiceServer">type UnsafeRootFileServiceServer</a>
+      </li>
+  <li>
+      <a href="#UploadRequest">type UploadRequest</a>
+      <ul>
+          <li><a href="#UploadRequest.Descriptor">func (*UploadRequest) Descriptor() ([]byte, []int)</a> <span class="deprecated-tag">deprecated</span></li>
+          <li><a href="#UploadRequest.GetData">func (x *UploadRequest) GetData() []byte</a></li>
+          <li><a href="#UploadRequest.GetFolderName">func (x *UploadRequest) GetFolderName() string</a></li>
+          <li><a href="#UploadRequest.ProtoMessage">func (*UploadRequest) ProtoMessage()</a></li>
+          <li><a href="#UploadRequest.ProtoReflect">func (x *UploadRequest) ProtoReflect() protoreflect.Message</a></li>
+          <li><a href="#UploadRequest.Reset">func (x *UploadRequest) Reset()</a></li>
+          <li><a href="#UploadRequest.String">func (x *UploadRequest) String() string</a></li>
+          </ul>
+      </li>
+  <li>
+      <a href="#UploadResponse">type UploadResponse</a>
+      <ul>
+          <li><a href="#UploadResponse.Descriptor">func (*UploadResponse) Descriptor() ([]byte, []int)</a> <span class="deprecated-tag">deprecated</span></li>
+          <li><a href="#UploadResponse.GetMessage">func (x *UploadResponse) GetMessage() string</a></li>
+          <li><a href="#UploadResponse.ProtoMessage">func (*UploadResponse) ProtoMessage()</a></li>
+          <li><a href="#UploadResponse.ProtoReflect">func (x *UploadResponse) ProtoReflect() protoreflect.Message</a></li>
+          <li><a href="#UploadResponse.Reset">func (x *UploadResponse) Reset()</a></li>
+          <li><a href="#UploadResponse.String">func (x *UploadResponse) String() string</a></li>
+          </ul>
+      </li>
+  </ul><h3 id="pkg-constants">Constants</h3>
+  <pre class="chroma"><span class="kd">const</span> <span class="p">(</span>
+	<span id="RootFileService_Upload_FullMethodName"><span class="nx">RootFileService_Upload_FullMethodName</span></span>       <span class="p">=</span> <span class="s">&#34;/rootfs.RootFileService/Upload&#34;</span>
+	<span id="RootFileService_ListFolders_FullMethodName"><span class="nx">RootFileService_ListFolders_FullMethodName</span></span>  <span class="p">=</span> <span class="s">&#34;/rootfs.RootFileService/ListFolders&#34;</span>
+	<span id="RootFileService_DeleteFolder_FullMethodName"><span class="nx">RootFileService_DeleteFolder_FullMethodName</span></span> <span class="p">=</span> <span class="s">&#34;/rootfs.RootFileService/DeleteFolder&#34;</span>
+<span class="p">)</span></pre>
+  <h3 id="pkg-variables">Variables</h3>
+  <pre class="chroma"><span class="kd">var</span> <span id="File_rootfs_proto"><span class="nx">File_rootfs_proto</span></span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#FileDescriptor"><span class="nx">FileDescriptor</span></a></pre>
+  <pre class="chroma"><span class="kd">var</span> <span id="RootFileService_ServiceDesc"><span class="nx">RootFileService_ServiceDesc</span></span> <span class="p">=</span> <a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#ServiceDesc"><span class="nx">ServiceDesc</span></a><span class="p">{</span>
+	<span class="nx">ServiceName</span><span class="p">:</span> <span class="s">&#34;rootfs.RootFileService&#34;</span><span class="p">,</span>
+	<span class="nx">HandlerType</span><span class="p">:</span> <span class="p">(</span><span class="o">*</span><a href="#RootFileServiceServer"><span class="nx">RootFileServiceServer</span></a><span class="p">)(</span><a href="https://pkg.go.dev/builtin#nil"><span class="kc">nil</span></a><span class="p">),</span>
+	<span class="nx">Methods</span><span class="p">:</span> <span class="p">[]</span><a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#MethodDesc"><span class="nx">MethodDesc</span></a><span class="p">{</span>
+		<span class="p">{</span>
+			<span class="nx">MethodName</span><span class="p">:</span> <span class="s">&#34;Upload&#34;</span><span class="p">,</span>
+			<span class="nx">Handler</span><span class="p">:</span>    <span class="nx">_RootFileService_Upload_Handler</span><span class="p">,</span>
+		<span class="p">},</span>
+		<span class="p">{</span>
+			<span class="nx">MethodName</span><span class="p">:</span> <span class="s">&#34;ListFolders&#34;</span><span class="p">,</span>
+			<span class="nx">Handler</span><span class="p">:</span>    <span class="nx">_RootFileService_ListFolders_Handler</span><span class="p">,</span>
+		<span class="p">},</span>
+		<span class="p">{</span>
+			<span class="nx">MethodName</span><span class="p">:</span> <span class="s">&#34;DeleteFolder&#34;</span><span class="p">,</span>
+			<span class="nx">Handler</span><span class="p">:</span>    <span class="nx">_RootFileService_DeleteFolder_Handler</span><span class="p">,</span>
+		<span class="p">},</span>
+	<span class="p">},</span>
+	<span class="nx">Streams</span><span class="p">:</span>  <span class="p">[]</span><a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#StreamDesc"><span class="nx">StreamDesc</span></a><span class="p">{},</span>
+	<span class="nx">Metadata</span><span class="p">:</span> <span class="s">&#34;rootfs.proto&#34;</span><span class="p">,</span>
+<span class="p">}</span></pre>
+  <p>RootFileService_ServiceDesc is the grpc.ServiceDesc for RootFileService service.
+It&apos;s only intended for direct use with grpc.RegisterService,
+and not to be introspected or modified (even as a copy)
+<h3 id="pkg-functions">Functions</h3>
+  <h3 id="RegisterRootFileServiceServer">func RegisterRootFileServiceServer</h3>
+    <pre class="chroma"><span class="kd">func</span> <span class="nf">RegisterRootFileServiceServer</span><span class="p">(</span><span class="nx">s</span> <a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#ServiceRegistrar"><span class="nx">ServiceRegistrar</span></a><span class="p">,</span> <span class="nx">srv</span> <a href="#RootFileServiceServer"><span class="nx">RootFileServiceServer</span></a><span class="p">)</span></pre>
+    <h3 id="pkg-types">Types</h3>
+  <h3 id="DeleteFolderRequest">type DeleteFolderRequest</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">DeleteFolderRequest</span> <span class="kd">struct</span> <span class="p">{</span>
+
+	<span class="c1">// The name of the root file system sub-folder to delete.
+</span><span class="c1"></span>	<span id="DeleteFolderRequest.FolderName"><span class="nx">FolderName</span></span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a> <span class="s">`protobuf:&#34;bytes,1,opt,name=folder_name,json=folderName,proto3&#34; json:&#34;folder_name,omitempty&#34;`</span>
+	<span class="c1">// contains filtered or unexported fields
+</span><span class="c1"></span><span class="p">}</span></pre>
+    <p>Request to delete a specific root file system sub-folder.
+<details class="deprecated"><summary><h4 id="DeleteFolderRequest.Descriptor">func (*DeleteFolderRequest) Descriptor <span class="deprecated-tag">deprecated</span></h4></summary>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#DeleteFolderRequest"><span class="nx">DeleteFolderRequest</span></a><span class="p">)</span> <span class="nf">Descriptor</span><span class="p">()</span> <span class="p">([]</span><a href="https://pkg.go.dev/builtin#byte"><span class="kt">byte</span></a><span class="p">,</span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#int"><span class="kt">int</span></a><span class="p">)</span></pre>
+  <p>Deprecated: Use DeleteFolderRequest.ProtoReflect.Descriptor instead.
+</details><h4 id="DeleteFolderRequest.GetFolderName">func (*DeleteFolderRequest) GetFolderName</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#DeleteFolderRequest"><span class="nx">DeleteFolderRequest</span></a><span class="p">)</span> <span class="nf">GetFolderName</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h4 id="DeleteFolderRequest.ProtoMessage">func (*DeleteFolderRequest) ProtoMessage</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#DeleteFolderRequest"><span class="nx">DeleteFolderRequest</span></a><span class="p">)</span> <span class="nf">ProtoMessage</span><span class="p">()</span></pre>
+  <h4 id="DeleteFolderRequest.ProtoReflect">func (*DeleteFolderRequest) ProtoReflect</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#DeleteFolderRequest"><span class="nx">DeleteFolderRequest</span></a><span class="p">)</span> <span class="nf">ProtoReflect</span><span class="p">()</span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#Message"><span class="nx">Message</span></a></pre>
+  <h4 id="DeleteFolderRequest.Reset">func (*DeleteFolderRequest) Reset</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#DeleteFolderRequest"><span class="nx">DeleteFolderRequest</span></a><span class="p">)</span> <span class="nf">Reset</span><span class="p">()</span></pre>
+  <h4 id="DeleteFolderRequest.String">func (*DeleteFolderRequest) String</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#DeleteFolderRequest"><span class="nx">DeleteFolderRequest</span></a><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h3 id="DeleteFolderResponse">type DeleteFolderResponse</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">DeleteFolderResponse</span> <span class="kd">struct</span> <span class="p">{</span>
+
+	<span class="c1">// Message indicating if the deletion was successful or not.
+</span><span class="c1"></span>	<span id="DeleteFolderResponse.Message"><span class="nx">Message</span></span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a> <span class="s">`protobuf:&#34;bytes,1,opt,name=message,proto3&#34; json:&#34;message,omitempty&#34;`</span>
+	<span class="c1">// contains filtered or unexported fields
+</span><span class="c1"></span><span class="p">}</span></pre>
+    <p>Response for the delete root file system sub-folder request.
+<details class="deprecated"><summary><h4 id="DeleteFolderResponse.Descriptor">func (*DeleteFolderResponse) Descriptor <span class="deprecated-tag">deprecated</span></h4></summary>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#DeleteFolderResponse"><span class="nx">DeleteFolderResponse</span></a><span class="p">)</span> <span class="nf">Descriptor</span><span class="p">()</span> <span class="p">([]</span><a href="https://pkg.go.dev/builtin#byte"><span class="kt">byte</span></a><span class="p">,</span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#int"><span class="kt">int</span></a><span class="p">)</span></pre>
+  <p>Deprecated: Use DeleteFolderResponse.ProtoReflect.Descriptor instead.
+</details><h4 id="DeleteFolderResponse.GetMessage">func (*DeleteFolderResponse) GetMessage</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#DeleteFolderResponse"><span class="nx">DeleteFolderResponse</span></a><span class="p">)</span> <span class="nf">GetMessage</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h4 id="DeleteFolderResponse.ProtoMessage">func (*DeleteFolderResponse) ProtoMessage</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#DeleteFolderResponse"><span class="nx">DeleteFolderResponse</span></a><span class="p">)</span> <span class="nf">ProtoMessage</span><span class="p">()</span></pre>
+  <h4 id="DeleteFolderResponse.ProtoReflect">func (*DeleteFolderResponse) ProtoReflect</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#DeleteFolderResponse"><span class="nx">DeleteFolderResponse</span></a><span class="p">)</span> <span class="nf">ProtoReflect</span><span class="p">()</span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#Message"><span class="nx">Message</span></a></pre>
+  <h4 id="DeleteFolderResponse.Reset">func (*DeleteFolderResponse) Reset</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#DeleteFolderResponse"><span class="nx">DeleteFolderResponse</span></a><span class="p">)</span> <span class="nf">Reset</span><span class="p">()</span></pre>
+  <h4 id="DeleteFolderResponse.String">func (*DeleteFolderResponse) String</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#DeleteFolderResponse"><span class="nx">DeleteFolderResponse</span></a><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h3 id="ListFoldersRequest">type ListFoldersRequest</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">ListFoldersRequest</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="c1">// contains filtered or unexported fields
+</span><span class="c1"></span><span class="p">}</span></pre>
+    <p>Request to get a list of all the uploaded root file system sub-folders.
+<details class="deprecated"><summary><h4 id="ListFoldersRequest.Descriptor">func (*ListFoldersRequest) Descriptor <span class="deprecated-tag">deprecated</span></h4></summary>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#ListFoldersRequest"><span class="nx">ListFoldersRequest</span></a><span class="p">)</span> <span class="nf">Descriptor</span><span class="p">()</span> <span class="p">([]</span><a href="https://pkg.go.dev/builtin#byte"><span class="kt">byte</span></a><span class="p">,</span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#int"><span class="kt">int</span></a><span class="p">)</span></pre>
+  <p>Deprecated: Use ListFoldersRequest.ProtoReflect.Descriptor instead.
+</details><h4 id="ListFoldersRequest.ProtoMessage">func (*ListFoldersRequest) ProtoMessage</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#ListFoldersRequest"><span class="nx">ListFoldersRequest</span></a><span class="p">)</span> <span class="nf">ProtoMessage</span><span class="p">()</span></pre>
+  <h4 id="ListFoldersRequest.ProtoReflect">func (*ListFoldersRequest) ProtoReflect</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#ListFoldersRequest"><span class="nx">ListFoldersRequest</span></a><span class="p">)</span> <span class="nf">ProtoReflect</span><span class="p">()</span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#Message"><span class="nx">Message</span></a></pre>
+  <h4 id="ListFoldersRequest.Reset">func (*ListFoldersRequest) Reset</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#ListFoldersRequest"><span class="nx">ListFoldersRequest</span></a><span class="p">)</span> <span class="nf">Reset</span><span class="p">()</span></pre>
+  <h4 id="ListFoldersRequest.String">func (*ListFoldersRequest) String</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#ListFoldersRequest"><span class="nx">ListFoldersRequest</span></a><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h3 id="ListFoldersResponse">type ListFoldersResponse</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">ListFoldersResponse</span> <span class="kd">struct</span> <span class="p">{</span>
+
+	<span class="c1">// The names of the uploaded sub-folders.
+</span><span class="c1"></span>	<span id="ListFoldersResponse.FolderNames"><span class="nx">FolderNames</span></span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a> <span class="s">`protobuf:&#34;bytes,1,rep,name=folder_names,json=folderNames,proto3&#34; json:&#34;folder_names,omitempty&#34;`</span>
+	<span class="c1">// contains filtered or unexported fields
+</span><span class="c1"></span><span class="p">}</span></pre>
+    <p>Response for the list root file system folders request.
+<details class="deprecated"><summary><h4 id="ListFoldersResponse.Descriptor">func (*ListFoldersResponse) Descriptor <span class="deprecated-tag">deprecated</span></h4></summary>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#ListFoldersResponse"><span class="nx">ListFoldersResponse</span></a><span class="p">)</span> <span class="nf">Descriptor</span><span class="p">()</span> <span class="p">([]</span><a href="https://pkg.go.dev/builtin#byte"><span class="kt">byte</span></a><span class="p">,</span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#int"><span class="kt">int</span></a><span class="p">)</span></pre>
+  <p>Deprecated: Use ListFoldersResponse.ProtoReflect.Descriptor instead.
+</details><h4 id="ListFoldersResponse.GetFolderNames">func (*ListFoldersResponse) GetFolderNames</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#ListFoldersResponse"><span class="nx">ListFoldersResponse</span></a><span class="p">)</span> <span class="nf">GetFolderNames</span><span class="p">()</span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h4 id="ListFoldersResponse.ProtoMessage">func (*ListFoldersResponse) ProtoMessage</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#ListFoldersResponse"><span class="nx">ListFoldersResponse</span></a><span class="p">)</span> <span class="nf">ProtoMessage</span><span class="p">()</span></pre>
+  <h4 id="ListFoldersResponse.ProtoReflect">func (*ListFoldersResponse) ProtoReflect</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#ListFoldersResponse"><span class="nx">ListFoldersResponse</span></a><span class="p">)</span> <span class="nf">ProtoReflect</span><span class="p">()</span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#Message"><span class="nx">Message</span></a></pre>
+  <h4 id="ListFoldersResponse.Reset">func (*ListFoldersResponse) Reset</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#ListFoldersResponse"><span class="nx">ListFoldersResponse</span></a><span class="p">)</span> <span class="nf">Reset</span><span class="p">()</span></pre>
+  <h4 id="ListFoldersResponse.String">func (*ListFoldersResponse) String</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#ListFoldersResponse"><span class="nx">ListFoldersResponse</span></a><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h3 id="RootFileServiceClient">type RootFileServiceClient</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">RootFileServiceClient</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="c1">// Upload a tarball and extract it to a specified sub-folder of the server&#39;s
+</span><span class="c1"></span>	<span class="c1">// rootfs storage location.
+</span><span class="c1"></span>	<span id="RootFileServiceClient.Upload"><span class="nf">Upload</span></span><span class="p">(</span><span class="nx">ctx</span> <a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="nx">in</span> <span class="o">*</span><a href="#UploadRequest"><span class="nx">UploadRequest</span></a><span class="p">,</span> <span class="nx">opts</span> <span class="o">...</span><a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#CallOption"><span class="nx">CallOption</span></a><span class="p">)</span> <span class="p">(</span><span class="o">*</span><a href="#UploadResponse"><span class="nx">UploadResponse</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span>
+	<span class="c1">// List all of the uploaded root file system folders.
+</span><span class="c1"></span>	<span id="RootFileServiceClient.ListFolders"><span class="nf">ListFolders</span></span><span class="p">(</span><span class="nx">ctx</span> <a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="nx">in</span> <span class="o">*</span><a href="#ListFoldersRequest"><span class="nx">ListFoldersRequest</span></a><span class="p">,</span> <span class="nx">opts</span> <span class="o">...</span><a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#CallOption"><span class="nx">CallOption</span></a><span class="p">)</span> <span class="p">(</span><span class="o">*</span><a href="#ListFoldersResponse"><span class="nx">ListFoldersResponse</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span>
+	<span class="c1">// Delete an uploaded root file system folder.
+</span><span class="c1"></span>	<span id="RootFileServiceClient.DeleteFolder"><span class="nf">DeleteFolder</span></span><span class="p">(</span><span class="nx">ctx</span> <a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="nx">in</span> <span class="o">*</span><a href="#DeleteFolderRequest"><span class="nx">DeleteFolderRequest</span></a><span class="p">,</span> <span class="nx">opts</span> <span class="o">...</span><a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#CallOption"><span class="nx">CallOption</span></a><span class="p">)</span> <span class="p">(</span><span class="o">*</span><a href="#DeleteFolderResponse"><span class="nx">DeleteFolderResponse</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span>
+<span class="p">}</span></pre>
+    <p>RootFileServiceClient is the client API for RootFileService service.
+<p>For semantics around ctx use and closing/ending streaming RPCs, please refer to <a href="https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream">https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream</a>.
+<h4 id="NewRootFileServiceClient">func NewRootFileServiceClient</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="nf">NewRootFileServiceClient</span><span class="p">(</span><span class="nx">cc</span> <a href="https://pkg.go.dev/google.golang.org/grpc"><span class="nx">grpc</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/grpc#ClientConnInterface"><span class="nx">ClientConnInterface</span></a><span class="p">)</span> <a href="#RootFileServiceClient"><span class="nx">RootFileServiceClient</span></a></pre>
+  <h3 id="RootFileServiceServer">type RootFileServiceServer</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">RootFileServiceServer</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="c1">// Upload a tarball and extract it to a specified sub-folder of the server&#39;s
+</span><span class="c1"></span>	<span class="c1">// rootfs storage location.
+</span><span class="c1"></span>	<span id="RootFileServiceServer.Upload"><span class="nf">Upload</span></span><span class="p">(</span><a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="o">*</span><a href="#UploadRequest"><span class="nx">UploadRequest</span></a><span class="p">)</span> <span class="p">(</span><span class="o">*</span><a href="#UploadResponse"><span class="nx">UploadResponse</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span>
+	<span class="c1">// List all of the uploaded root file system folders.
+</span><span class="c1"></span>	<span id="RootFileServiceServer.ListFolders"><span class="nf">ListFolders</span></span><span class="p">(</span><a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="o">*</span><a href="#ListFoldersRequest"><span class="nx">ListFoldersRequest</span></a><span class="p">)</span> <span class="p">(</span><span class="o">*</span><a href="#ListFoldersResponse"><span class="nx">ListFoldersResponse</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span>
+	<span class="c1">// Delete an uploaded root file system folder.
+</span><span class="c1"></span>	<span id="RootFileServiceServer.DeleteFolder"><span class="nf">DeleteFolder</span></span><span class="p">(</span><a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="o">*</span><a href="#DeleteFolderRequest"><span class="nx">DeleteFolderRequest</span></a><span class="p">)</span> <span class="p">(</span><span class="o">*</span><a href="#DeleteFolderResponse"><span class="nx">DeleteFolderResponse</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span>
+	<span class="c1">// contains filtered or unexported methods
+</span><span class="c1"></span><span class="p">}</span></pre>
+    <p>RootFileServiceServer is the server API for RootFileService service.
+All implementations must embed UnimplementedRootFileServiceServer
+for forward compatibility
+<h3 id="UnimplementedRootFileServiceServer">type UnimplementedRootFileServiceServer</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">UnimplementedRootFileServiceServer</span> <span class="kd">struct</span> <span class="p">{</span>
+<span class="p">}</span></pre>
+    <p>UnimplementedRootFileServiceServer must be embedded to have forward compatible implementations.
+<h4 id="UnimplementedRootFileServiceServer.DeleteFolder">func (UnimplementedRootFileServiceServer) DeleteFolder</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><a href="#UnimplementedRootFileServiceServer"><span class="nx">UnimplementedRootFileServiceServer</span></a><span class="p">)</span> <span class="nf">DeleteFolder</span><span class="p">(</span><a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="o">*</span><a href="#DeleteFolderRequest"><span class="nx">DeleteFolderRequest</span></a><span class="p">)</span> <span class="p">(</span><span class="o">*</span><a href="#DeleteFolderResponse"><span class="nx">DeleteFolderResponse</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span></pre>
+  <h4 id="UnimplementedRootFileServiceServer.ListFolders">func (UnimplementedRootFileServiceServer) ListFolders</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><a href="#UnimplementedRootFileServiceServer"><span class="nx">UnimplementedRootFileServiceServer</span></a><span class="p">)</span> <span class="nf">ListFolders</span><span class="p">(</span><a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="o">*</span><a href="#ListFoldersRequest"><span class="nx">ListFoldersRequest</span></a><span class="p">)</span> <span class="p">(</span><span class="o">*</span><a href="#ListFoldersResponse"><span class="nx">ListFoldersResponse</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span></pre>
+  <h4 id="UnimplementedRootFileServiceServer.Upload">func (UnimplementedRootFileServiceServer) Upload</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><a href="#UnimplementedRootFileServiceServer"><span class="nx">UnimplementedRootFileServiceServer</span></a><span class="p">)</span> <span class="nf">Upload</span><span class="p">(</span><a href="https://pkg.go.dev/context"><span class="nx">context</span></a><span class="p">.</span><a href="https://pkg.go.dev/context#Context"><span class="nx">Context</span></a><span class="p">,</span> <span class="o">*</span><a href="#UploadRequest"><span class="nx">UploadRequest</span></a><span class="p">)</span> <span class="p">(</span><span class="o">*</span><a href="#UploadResponse"><span class="nx">UploadResponse</span></a><span class="p">,</span> <a href="https://pkg.go.dev/builtin#error"><span class="kt">error</span></a><span class="p">)</span></pre>
+  <h3 id="UnsafeRootFileServiceServer">type UnsafeRootFileServiceServer</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">UnsafeRootFileServiceServer</span> <span class="kd">interface</span> <span class="p">{</span>
+	<span class="c1">// contains filtered or unexported methods
+</span><span class="c1"></span><span class="p">}</span></pre>
+    <p>UnsafeRootFileServiceServer may be embedded to opt out of forward compatibility for this service.
+Use of this interface is not recommended, as added methods to RootFileServiceServer will
+result in compilation errors.
+<h3 id="UploadRequest">type UploadRequest</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">UploadRequest</span> <span class="kd">struct</span> <span class="p">{</span>
+
+	<span class="c1">// The name of the sub-folder to which files should be extracted.
+</span><span class="c1"></span>	<span id="UploadRequest.FolderName"><span class="nx">FolderName</span></span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a> <span class="s">`protobuf:&#34;bytes,1,opt,name=folder_name,json=folderName,proto3&#34; json:&#34;folder_name,omitempty&#34;`</span>
+	<span class="c1">// The tarball file&#39;s bytes.
+</span><span class="c1"></span>	<span id="UploadRequest.Data"><span class="nx">Data</span></span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#byte"><span class="kt">byte</span></a> <span class="s">`protobuf:&#34;bytes,2,opt,name=data,proto3&#34; json:&#34;data,omitempty&#34;`</span>
+	<span class="c1">// contains filtered or unexported fields
+</span><span class="c1"></span><span class="p">}</span></pre>
+    <p>Request to upload a tarball.
+<details class="deprecated"><summary><h4 id="UploadRequest.Descriptor">func (*UploadRequest) Descriptor <span class="deprecated-tag">deprecated</span></h4></summary>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#UploadRequest"><span class="nx">UploadRequest</span></a><span class="p">)</span> <span class="nf">Descriptor</span><span class="p">()</span> <span class="p">([]</span><a href="https://pkg.go.dev/builtin#byte"><span class="kt">byte</span></a><span class="p">,</span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#int"><span class="kt">int</span></a><span class="p">)</span></pre>
+  <p>Deprecated: Use UploadRequest.ProtoReflect.Descriptor instead.
+</details><h4 id="UploadRequest.GetData">func (*UploadRequest) GetData</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#UploadRequest"><span class="nx">UploadRequest</span></a><span class="p">)</span> <span class="nf">GetData</span><span class="p">()</span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#byte"><span class="kt">byte</span></a></pre>
+  <h4 id="UploadRequest.GetFolderName">func (*UploadRequest) GetFolderName</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#UploadRequest"><span class="nx">UploadRequest</span></a><span class="p">)</span> <span class="nf">GetFolderName</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h4 id="UploadRequest.ProtoMessage">func (*UploadRequest) ProtoMessage</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#UploadRequest"><span class="nx">UploadRequest</span></a><span class="p">)</span> <span class="nf">ProtoMessage</span><span class="p">()</span></pre>
+  <h4 id="UploadRequest.ProtoReflect">func (*UploadRequest) ProtoReflect</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#UploadRequest"><span class="nx">UploadRequest</span></a><span class="p">)</span> <span class="nf">ProtoReflect</span><span class="p">()</span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#Message"><span class="nx">Message</span></a></pre>
+  <h4 id="UploadRequest.Reset">func (*UploadRequest) Reset</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#UploadRequest"><span class="nx">UploadRequest</span></a><span class="p">)</span> <span class="nf">Reset</span><span class="p">()</span></pre>
+  <h4 id="UploadRequest.String">func (*UploadRequest) String</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#UploadRequest"><span class="nx">UploadRequest</span></a><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h3 id="UploadResponse">type UploadResponse</h3>
+    <pre class="chroma"><span class="kd">type</span> <span class="nx">UploadResponse</span> <span class="kd">struct</span> <span class="p">{</span>
+
+	<span class="c1">// Message indicating if the upload was successful or not.
+</span><span class="c1"></span>	<span id="UploadResponse.Message"><span class="nx">Message</span></span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a> <span class="s">`protobuf:&#34;bytes,1,opt,name=message,proto3&#34; json:&#34;message,omitempty&#34;`</span>
+	<span class="c1">// contains filtered or unexported fields
+</span><span class="c1"></span><span class="p">}</span></pre>
+    <p>Response for the upload request.
+<details class="deprecated"><summary><h4 id="UploadResponse.Descriptor">func (*UploadResponse) Descriptor <span class="deprecated-tag">deprecated</span></h4></summary>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#UploadResponse"><span class="nx">UploadResponse</span></a><span class="p">)</span> <span class="nf">Descriptor</span><span class="p">()</span> <span class="p">([]</span><a href="https://pkg.go.dev/builtin#byte"><span class="kt">byte</span></a><span class="p">,</span> <span class="p">[]</span><a href="https://pkg.go.dev/builtin#int"><span class="kt">int</span></a><span class="p">)</span></pre>
+  <p>Deprecated: Use UploadResponse.ProtoReflect.Descriptor instead.
+</details><h4 id="UploadResponse.GetMessage">func (*UploadResponse) GetMessage</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#UploadResponse"><span class="nx">UploadResponse</span></a><span class="p">)</span> <span class="nf">GetMessage</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  <h4 id="UploadResponse.ProtoMessage">func (*UploadResponse) ProtoMessage</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="o">*</span><a href="#UploadResponse"><span class="nx">UploadResponse</span></a><span class="p">)</span> <span class="nf">ProtoMessage</span><span class="p">()</span></pre>
+  <h4 id="UploadResponse.ProtoReflect">func (*UploadResponse) ProtoReflect</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#UploadResponse"><span class="nx">UploadResponse</span></a><span class="p">)</span> <span class="nf">ProtoReflect</span><span class="p">()</span> <a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect"><span class="nx">protoreflect</span></a><span class="p">.</span><a href="https://pkg.go.dev/google.golang.org/protobuf/reflect/protoreflect#Message"><span class="nx">Message</span></a></pre>
+  <h4 id="UploadResponse.Reset">func (*UploadResponse) Reset</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#UploadResponse"><span class="nx">UploadResponse</span></a><span class="p">)</span> <span class="nf">Reset</span><span class="p">()</span></pre>
+  <h4 id="UploadResponse.String">func (*UploadResponse) String</h4>
+  <pre class="chroma"><span class="kd">func</span> <span class="p">(</span><span class="nx">x</span> <span class="o">*</span><a href="#UploadResponse"><span class="nx">UploadResponse</span></a><span class="p">)</span> <span class="nf">String</span><span class="p">()</span> <a href="https://pkg.go.dev/builtin#string"><span class="kt">string</span></a></pre>
+  </main>
+    <hr>
+    <footer>
+      <small id="generated-by-footer">
+        Generated with <a href="https://abhinav.github.io/doc2go/">doc2go</a>
+      </small>
+    </footer>
+    <script src="../../../../../../_/js/permalink.js"></script></body>
+</html>
