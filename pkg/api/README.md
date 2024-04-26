@@ -1,1 +1,1 @@
-Generated job and rootf gRPC code will go in their perspective sub-packages here.
+OutputSender interface will go here.

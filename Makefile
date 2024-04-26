@@ -33,7 +33,6 @@ vendor: ## Copy of all packages needed to support builds and tests into the vend
 
 generate: ## Compile protobuf definitions and output to pkg/api/
 	$(PROTOC) --proto_path=proto --go_out=pkg/api/job --go-grpc_out=pkg/api --go_opt=paths=source_relative job.proto
-	$(PROTOC) --proto_path=proto --go_out=pkg/api/rootfs --go-grpc_out=pkg/api --go_opt=paths=source_relative rootfs.proto
 
 ## Test:
 test: ## Run the unit tests
@@ -48,12 +47,7 @@ install-tools: ## Install local protoc, grpc plugin, and godoc if you need them
 	$(GOINSTALL) google.golang.org/protobuf/cmd/protoc-gen-go@latest
 	$(GOINSTALL) google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 	$(GOINSTALL) golang.org/x/tools/cmd/godoc@latest
-	# TODO Once the library code is written, remove doc2go and just use godoc
-	$(GOINSTALL) go.abhg.dev/doc2go@latest
-
-godoc: ## View Go library documentation at http://localhost:8000
-	# TODO: Replace doc2go static API documentation in docs/api with godoc when library is implemented
-	python3 -m http.server --directory docs/godocs
+	$(GOINSTALL) github.com/princjef/gomarkdoc/cmd/gomarkdoc@latest
 
 ## Help:
 help: ## Show this help

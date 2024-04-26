@@ -6,8 +6,6 @@ isolation.
 ## Documentation
 
 * [Design Proposal](./docs/design-proposal.md)
-* [Library Godocs](./docs/godocs) - use `make godocs` to view on localhost:8000
-* [gRPC API proto definitions](./proto)
 
 ## Building
 
