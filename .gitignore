@@ -13,9 +13,16 @@
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+profile.cov
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
 # Go workspace file
 go.work
+
+# Dev notes, TODOs, draft scribblings and links. Do not commit.
+docs/notes.md
+
+# Output directory
+out/

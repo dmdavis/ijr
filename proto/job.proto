@@ -1,0 +1,100 @@
+// The file defines the JobService API.
+syntax = "proto3";
+
+package job;
+
+option go_package = "/job";
+
+import "google/protobuf/timestamp.proto";
+
+// JobService provides methods for starting a job and streaming its output.
+service JobService {
+  // Starts the job and returns an identifier for the job.
+  rpc StartJob(StartRequest) returns (StartResponse) {}
+  // Returns a list of running jobs with their jobId and jobStart timestamps.
+  rpc ListJobs(ListJobsRequest) returns (ListJobsResponse) {}
+  // Stream the output of the job.
+  rpc StreamJobOutput(JobIdentifier) returns (stream JobOutput) {}
+  // Stops a running job.
+  rpc StopJob(JobIdentifier) returns (StopResponse) {}
+}
+
+// StartRequest contains the job command, arguments, and resource constraints.
+message StartRequest {
+  // The job command line to run.
+  string job_command = 1;
+  // Arguments for the job command.
+  repeated string job_arguments = 2;
+  // A number representing the proportion of CPU shares the job has.
+  uint32 cpu_shares = 3;
+  // Maximum memory limit in bytes.
+  uint64 memory_limit_in_bytes = 4;
+  // A string in the form <device>:<io/s limit> (ex. /dev/sdc:1200) use to limit
+  // read I/O operations per second.
+  string disk_read_iops_limit = 5;
+  // A string in the form <device>:<io/s limit> (ex. /dev/sdc:1200) use to limit
+  // write I/O operations per second.
+  string disk_write_iops_limit = 6;
+}
+
+// StartResponse is returned by StartJob if there is no error.
+message StartResponse {
+  // A unique string representing the running job.
+  string job_id = 1;
+  // The host system timestamp for when the job started.
+  google.protobuf.Timestamp job_start = 2;
+}
+
+// JobIdentifier contains a jobId field. Set this field to the jobId value
+// returned when a job successfully starts.
+message JobIdentifier {
+  // A unique string representing the running job.
+  string job_id = 1;
+}
+
+// JobOutput contains the streamed output of the running job.
+message JobOutput {
+  // The streamed output of an executing job.
+  bytes output = 1;
+}
+
+// StopResponse will return a status of STOPPED once the job command is stopped.
+message StopResponse {
+  // The status of the job.
+  enum JobStatus {
+    UNKNOWN = 0;    // Placeholder for an unknown job status
+    STOPPED = 1;    // The job was stopped successfully
+  }
+  // JobStatus represents the final status of the job after stopping.
+  JobStatus status = 1;
+}
+
+// ListJobsRequest contains no fields. Merely pass it to the ListJobs method to
+// retrieve the list of running jobs.
+message ListJobsRequest {
+}
+
+// ListJobsResponse returns the JobInfo for each running job.
+message ListJobsResponse {
+  repeated JobRecord job_records = 1;
+}
+
+// JobRecord contains the settings of each running job.
+message JobRecord {
+  // A unique string representing the running job.
+  string job_id = 1;
+  // The host system timestamp for when the job started.
+  google.protobuf.Timestamp job_start = 2;
+  // The job command line being executed.
+  string job_command = 3;
+  // A number representing the proportion of CPU shares the job has.
+  uint32 cpu_shares = 4;
+  // Maximum memory limit in bytes.
+  uint64 memory_limit_in_bytes = 5;
+  // A string in the form <device>:<io/s limit> (ex. /dev/sdc:1200) use to limit
+  // read I/O operations per second.
+  string disk_read_iops_limit = 6;
+  // A string in the form <device>:<io/s limit> (ex. /dev/sdc:1200) use to limit
+  // write I/O operations per second.
+  string disk_write_iops_limit = 7;
+}
